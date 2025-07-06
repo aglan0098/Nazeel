@@ -1,4 +1,4 @@
-function Card({ name, number }) {
+function NumberCard({ name, number }) {
   return (
     <div
       className={`p-6 rounded-2xl text-center cursor-pointer hover:opacity-90 transition-opacity bg-[#FEF5E5]`}
@@ -9,4 +9,4 @@ function Card({ name, number }) {
   );
 }
 
-export default Card;
+export default NumberCard;

@@ -1,4 +1,4 @@
-import NumberCard from "@/components/layout/ui/NumberCard";
+import NumberCard from "@/components/ui/NumberCard";
 
 const cards = [
   {

@@ -7,34 +7,28 @@ import Image from "next/image";
 // icons
 import { TbArrowBarToRight, TbArrowBarToLeft } from "react-icons/tb";
 import { IoMdArrowDropleft } from "react-icons/io";
-import { RxDashboard } from "react-icons/rx";
-import { LuFileCog } from "react-icons/lu";
-import { PiUsersThree } from "react-icons/pi";
-import { BsGraphUp } from "react-icons/bs";
-import { IoSettingsOutline } from "react-icons/io5";
 import { LuFileDown } from "react-icons/lu";
+import { sidebarData } from "@/data/sidebarData";
 
-export default function Sidebar({ isOpen, toggleSidebar }) {
+export default function Sidebartest({ isOpen, toggleSidebar }) {
   // Toggle Menus
-  const [openMenus, setOpenMenus] = useState([]);
+  const [openMenu, setOpenMenu] = useState(null);
 
   const toggleMenu = (menu) => {
-    setOpenMenus((prev) =>
-      prev.includes(menu) ? prev.filter((m) => m !== menu) : [...prev, menu]
-    );
+    setOpenMenu((prev) => (prev === menu ? null : menu));
   };
 
   return (
     <>
       <div
-        className={`w-60 h-screen fixed top-0 right-0 text-gray-800 bg-gray-50 flex flex-col px-3 py-5 border-l-2 border-gray-100 transition-transform duration-300 z-20 ${
-          isOpen ? "translate-x-0" : "translate-x-60"
+        className={`w-64 h-screen fixed top-0 right-0 text-gray-800 bg-gray-50 flex flex-col px-3 py-5 border-l-2 border-gray-100 transition-transform duration-300 z-20 ${
+          isOpen ? "translate-x-0" : "translate-x-64"
         }`}
       >
         {/* Sidebar Header */}
-        <div className=" relative h-16 p-2 flex items-center gap-5 bg-gray-100 rounded-lg">
+        <div className="relative h-16 p-2 flex items-center gap-5 bg-gray-100 rounded-lg">
           <Image src="/images/logo.png" alt="logo" width={50} height={50} />
-          <h2 className="text-md font-bold">نظام منجز</h2>
+          <h2 className="text-md font-bold">نظام نزيل</h2>
 
           {/* toggle button */}
           <button
@@ -52,183 +46,72 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         </div>
 
         {/* Sidebar Menu */}
-        <nav className="flex-1 overflow-y-auto py-5 text-sm text-gray-600">
+        <nav className="flex-1 overflow-y-auto text-sm text-gray-600">
           <ul className="space-y-2 p-2 text-[15px]">
-            <Link href="/">
-              <li className="flex items-center gap-3">
-                <RxDashboard className="text-xl" />
-                لوحة المعلومات
-              </li>
-            </Link>
+            {sidebarData.map((section, index) => (
+              <div key={index}>
+                <p className="font-bold text-sm mt-5 mb-2 p-2 text-gray-500">
+                  {section.groupLabel ? section.groupLabel : ""}
+                </p>
 
-            <p className="font-bold text-sm mt-7 mb-3 p-2 text-gray-800">
-              القوائم
-            </p>
+                {section.items.map((item, idx) => {
+                  const Icon = item.icon;
 
-            {/* Menu Items */}
-            <li className="mb-4">
-              <button
-                onClick={() => toggleMenu("dashboard")}
-                className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${
-                  openMenus.includes("dashboard")
-                    ? "bg-main text-white"
-                    : "hover:bg-gray-200"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <LuFileCog className="text-xl" />
-                  <span className="ml-3">إدارة الداخلي</span>
-                </div>
-                <IoMdArrowDropleft
-                  className={`${
-                    openMenus.includes("dashboard") ? "-rotate-90" : "rotate-0"
-                  }`}
-                />
-              </button>
-              {openMenus.includes("dashboard") && (
-                <ul className="pr-6 space-y-1 mt-1">
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      الرئيسية
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      الإحصائيات
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                  if (item.type === "link") {
+                    return (
+                      <Link href={item.path} key={idx}>
+                        <li className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-200">
+                          <Icon className="text-xl" />
+                          {item.label}
+                        </li>
+                      </Link>
+                    );
+                  }
 
-            <li className="mb-4">
-              <button
-                onClick={() => toggleMenu("users")}
-                className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${
-                  openMenus.includes("users")
-                    ? "bg-main text-white"
-                    : "hover:bg-gray-200"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <PiUsersThree className="text-xl" />
-                  <span className="ml-3">إدارة المستخدمين</span>
-                </div>
-                <IoMdArrowDropleft
-                  className={`${
-                    openMenus.includes("users") ? "-rotate-90" : "rotate-0"
-                  }`}
-                />
-              </button>
-              {openMenus.includes("users") && (
-                <ul className="pr-6 space-y-1 mt-1">
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إدارة المستخدمين
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إضافة مستخدم
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                  if (item.type === "dropdown") {
+                    return (
+                      <li key={idx}>
+                        <button
+                          onClick={() => toggleMenu(item.id)}
+                          className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${
+                            openMenu === item.id
+                              ? "bg-main text-white"
+                              : "hover:bg-gray-200"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon className="text-xl" />
+                            <span className="ml-3">{item.label}</span>
+                          </div>
+                          <IoMdArrowDropleft
+                            className={`transition-transform ${
+                              openMenu === item.id ? "-rotate-90" : "rotate-0"
+                            }`}
+                          />
+                        </button>
 
-            <li className="mb-4">
-              <button
-                onClick={() => toggleMenu("reports")}
-                className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${
-                  openMenus.includes("reports")
-                    ? "bg-main text-white"
-                    : "hover:bg-gray-200"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <BsGraphUp className="text-xl" />
-                  <span className="ml-3">التقارير</span>
-                </div>
-                <IoMdArrowDropleft
-                  className={`${
-                    openMenus.includes("reports") ? "-rotate-90" : "rotate-0"
-                  }`}
-                />
-              </button>
-              {openMenus.includes("reports") && (
-                <ul className="pr-6 space-y-1 mt-1">
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إدارة المستخدمين
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إضافة مستخدم
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                        {openMenu === item.id && (
+                          <ul className="pr-10 mt-1 list-disc">
+                            {item.children.map((child, cIdx) => (
+                              <li key={cIdx}>
+                                <Link
+                                  href={child.path}
+                                  className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
+                                >
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  }
 
-            <li className="mb-4">
-              <button
-                onClick={() => toggleMenu("settings")}
-                className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${
-                  openMenus.includes("settings")
-                    ? "bg-main text-white"
-                    : "hover:bg-gray-200"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <IoSettingsOutline className="text-xl" />
-                  <span className="ml-3">الإعدادات</span>
-                </div>
-                <IoMdArrowDropleft
-                  className={`${
-                    openMenus.includes("settings") ? "-rotate-90" : "rotate-0"
-                  }`}
-                />
-              </button>
-              {openMenus.includes("settings") && (
-                <ul className="pr-6 space-y-1 mt-1">
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إعدادات الحساب
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-2 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      إعدادات النظام
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                  return null;
+                })}
+              </div>
+            ))}
           </ul>
         </nav>
 
