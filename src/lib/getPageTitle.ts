@@ -1,4 +1,5 @@
-import { sidebarData } from "@/data/sidebarData";
+// import { sidebarData } from "@/data/sidebarData";
+import { sidebarData } from "../data/sidebarData";
 
 export function getPageTitleByPath(pathname) {
   for (const section of sidebarData) {

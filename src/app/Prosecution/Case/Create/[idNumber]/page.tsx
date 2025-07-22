@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { prisoners } from '@/data/mockPrisoners';
-import CreateCase from '@/app/Prosecution/Case/Create/CreateCase';
+import CreateCase from '@/app/Prosecution/Case/Create/_components/CreateCase';
 
 export default function DynamicCasePage() {
   const { idNumber } = useParams();

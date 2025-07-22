@@ -1,11 +1,11 @@
 "use client";
 
 import React from 'react';
-import PersonalInfoCard from "@/components/CreateTransaction/PersonalInfoCard";
-import JudgmentInfoCard from "@/components/CreateTransaction/JudgmentInfoCard";
-import PenaltySection from "@/components/CreateTransaction/PenaltySection";
-import JudgmentApprovalFields from "@/components/CreateTransaction/JudgmentApprovalFields";
-import CaseInfoCard from "@/components/CreateTransaction/CaseInfoCard";
+import PersonalInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard";
+import JudgmentInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentInfoCard";
+import PenaltySection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PenaltySection";
+import JudgmentApprovalFields from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentApprovalFields";
+import CaseInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/CaseInfoCard";
 
 function CreateCase({ prisoner }) {
   const [caseData] = prisoner.cases || []; // ← استخراج أول قضية

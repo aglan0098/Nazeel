@@ -2,15 +2,15 @@
 
 import { useEffect, Suspense, lazy } from "react";
 import { usePrisonerStore } from "@/store/usePrisonerStore";
-import PrisonerSearchWrapper from "../Create/PrisonerSearchWrapper";
-import CasesTableSkeleton from "./CasesTableSkeleton";
-import PersonalInfoSkeleton from "./PersonalInfoSkeleton";
+import PrisonerSearchWrapper from "./_components/PrisonerSearchWrapper";
+import CasesTableSkeleton from "./_components/CasesTableSkeleton";
+import PersonalInfoSkeleton from "./_components/PersonalInfoSkeleton";
 import { Search, OctagonX } from "lucide-react";
 
 const PersonalInfoCard = lazy(() =>
-  import("@/components/CreateTransaction/PersonalInfoCard")
+  import("@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard")
 );
-const CasesTable = lazy(() => import("./CasesTable"));
+const CasesTable = lazy(() => import("./_components/CasesTable"));
 
 export default function Page() {
   const { selectedPrisoner, notFound, resetNotFound } = usePrisonerStore();
@@ -52,7 +52,8 @@ export default function Page() {
           </div>
           <h2 className="text-lg font-semibold mb-1">السجين غير موجود</h2>
           <p className="text-sm text-red-700 max-w-md">
-            لم يتم العثور على سجين برقم الهوية المدخل<br />
+            لم يتم العثور على سجين برقم الهوية المدخل
+            <br />
             الرجاء التأكد من صحة الرقم أو اختيار سجين من القائمة
           </p>
         </div>
@@ -63,8 +64,8 @@ export default function Page() {
           </div>
           <h2 className="text-lg font-semibold mb-1">لا يوجد بيانات لعرضها</h2>
           <p className="text-sm text-gray-500 max-w-md">
-            الرجاء إدخال رقم الهوية في حقل البحث أو اختيار سجين من القائمة
-            لعرض البيانات الشخصية والقضايا المرتبطة به
+            الرجاء إدخال رقم الهوية في حقل البحث أو اختيار سجين من القائمة لعرض
+            البيانات الشخصية والقضايا المرتبطة به
           </p>
         </div>
       )}
