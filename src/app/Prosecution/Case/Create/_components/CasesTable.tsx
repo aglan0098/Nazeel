@@ -1,31 +1,36 @@
-"use client";
-// await new Promise(res => setTimeout(res, 20000));
-
-
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { PlusCircle } from "lucide-react";
-import { usePrisonerStore } from "@/store/usePrisonerStore";
 import CaseRow from "./CaseRow";
 import { Suspense, lazy } from "react";
-const CaseDialog = lazy(() => import("./CaseDialog"));
 import RowMenu from "./RowMenu";
+
+const CaseDialog = lazy(() => import("./CaseDialog"));
 const AddCaseDialog = lazy(() => import("./AddCaseDialog"));
-export default function CasesTable() {
-  const { selectedPrisoner } = usePrisonerStore();
-  const [expandedId, setExpandedId] = useState(null);
-  const [openDialogId, setOpenDialogId] = useState(null);
-  const [menuId, setMenuId] = useState(null);
+
+interface CaseData {
+  caseNumber: string;
+  linkedPrisoners?: any[]; // يمكنك تحسين النوع لاحقًا
+  [key: string]: any;
+}
+
+interface CasesTableProps {
+  cases: CaseData[];
+  prisonerIdNumber?: string;
+}
+
+const CasesTable: React.FC<CasesTableProps> = ({ cases, prisonerIdNumber }) => {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [openDialogId, setOpenDialogId] = useState<string | null>(null);
+  const [menuId, setMenuId] = useState<string | null>(null);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const selectedItem = selectedPrisoner?.cases.find(
-    (d) => d.caseNumber === openDialogId
-  );
+  const selectedItem = cases.find((d) => d.caseNumber === openDialogId);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuId(null);
       }
     };
@@ -39,11 +44,11 @@ export default function CasesTable() {
     };
   }, [menuId]);
 
-  const toggleExpand = (id) => {
+  const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
-  const getStatusStyle = useCallback((status) => {
+  const getStatusStyle = useCallback((status: string) => {
     switch (status) {
       case "موقوف":
         return "bg-yellow-50 text-yellow-700";
@@ -62,7 +67,7 @@ export default function CasesTable() {
     <div className="rounded-xl border border-gray-100 bg-white shadow-sm overflow-hidden mt-6">
       <div className="flex items-center justify-between p-4">
         <h2 className="text-lg font-semibold">القضايا</h2>
-        {selectedPrisoner?.cases.length > 0 && (
+        {cases.length > 0 && (
           <button
             onClick={() => setOpenAddModal(true)}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg text-amber-700 font-medium text-sm bg-amber-50 hover:bg-amber-100 transition-all duration-200 active:scale-95"
@@ -89,7 +94,7 @@ export default function CasesTable() {
           </tr>
         </thead>
         <tbody>
-          {selectedPrisoner?.cases.length === 0 && (
+          {cases.length === 0 && (
             <tr>
               <td colSpan={10} className="text-center text-gray-500 py-6">
                 لا توجد سجلات
@@ -97,7 +102,7 @@ export default function CasesTable() {
             </tr>
           )}
 
-          {selectedPrisoner?.cases.map((item, index) => (
+          {cases.map((item, index) => (
             <CaseRow
               key={index}
               item={item}
@@ -115,34 +120,34 @@ export default function CasesTable() {
         </tbody>
       </table>
 
-{selectedItem && (
-  <Suspense fallback={null}>
-    <CaseDialog
-      isOpen={true}
-      onClose={() => setOpenDialogId(null)}
-      caseNumber={selectedItem.caseNumber}
-      linkedPrisoners={selectedItem.linkedPrisoners || []}
-    />
-  </Suspense>
-)}
-
-      {menuId !== null && (
-<RowMenu
-  isOpen={true}
-  onClose={() => setMenuId(null)}
-  position={menuPosition}
-  prisonerIdNumber={selectedPrisoner?.idNumber}
-/>
-
+      {selectedItem && (
+        <Suspense fallback={null}>
+          <CaseDialog
+            isOpen={true}
+            onClose={() => setOpenDialogId(null)}
+            caseNumber={selectedItem.caseNumber}
+            linkedPrisoners={selectedItem.linkedPrisoners || []}
+          />
+        </Suspense>
       )}
 
-<Suspense fallback={null}>
-  <AddCaseDialog
-    isOpen={openAddModal}
-    onClose={() => setOpenAddModal(false)}
-  />
-</Suspense>
+      {menuId !== null && (
+        <RowMenu
+          isOpen={true}
+          onClose={() => setMenuId(null)}
+          position={menuPosition}
+          prisonerIdNumber={prisonerIdNumber}
+        />
+      )}
 
+      <Suspense fallback={null}>
+        <AddCaseDialog
+          isOpen={openAddModal}
+          onClose={() => setOpenAddModal(false)}
+        />
+      </Suspense>
     </div>
   );
-}
+};
+
+export default CasesTable;

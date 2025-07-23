@@ -1,31 +1,41 @@
 "use client";
-import { useState ,useCallback} from "react";
 
+import { useCallback } from "react";
 import { Dialog } from "@headlessui/react";
-import { X, CheckCircle,RefreshCw } from "lucide-react";
+import { X, CheckCircle, RefreshCw, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePrisonerStore } from "@/store/usePrisonerStore";
+import type { Prisoner } from "@/types/Prisoner";
 
-export default function PrisonersListDialog({ isOpen, onClose }) {
-  const { prisoners, setSelectedPrisoner } = usePrisonerStore(); 
+interface PrisonersListDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSelect: (prisoner: Prisoner) => void;
+}
 
-const getStatusStyle = useCallback((status) => {
-  switch (status) {
-    case "موقوف":
-      return "bg-yellow-50 text-yellow-700";
-    case "محال الى المحكمة":
-      return "bg-blue-50 text-blue-700";
-    case "محكوم حكم ابتدائي":
-      return "bg-green-50 text-green-700";
-    case "محكوم حكم نهائي":
-      return "bg-red-50 text-red-700";
-    default:
-      return "bg-gray-100 text-gray-500";
-  }
-}, []);
+export default function PrisonersListDialog({
+  isOpen,
+  onClose,
+  onSelect,
+}: PrisonersListDialogProps) {
+  const { prisoners } = usePrisonerStore();
+  const { selectedPrisoner } = usePrisonerStore();
 
-  const status =prisoners.cases?.[0]?.judgmentType;
-  console.log(status)
+  const getStatusStyle = useCallback((status: string | undefined): string => {
+    switch (status) {
+      case "موقوف":
+        return "bg-yellow-50 text-yellow-700";
+      case "محال الى المحكمة":
+        return "bg-blue-50 text-blue-700";
+      case "محكوم حكم ابتدائي":
+        return "bg-green-50 text-green-700";
+      case "محكوم حكم نهائي":
+        return "bg-red-50 text-red-700";
+      default:
+        return "bg-gray-100 text-gray-500";
+    }
+  }, []);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -34,7 +44,6 @@ const getStatusStyle = useCallback((status) => {
             className="fixed inset-0 bg-black/40 backdrop-blur-sm"
             aria-hidden="true"
           />
-
           <div className="fixed inset-0 flex items-center justify-center p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -43,7 +52,7 @@ const getStatusStyle = useCallback((status) => {
               transition={{ duration: 0.25 }}
             >
               <Dialog.Panel className="bg-white rounded-xl shadow-xl w-[1100px] max-h-[90vh] overflow-hidden p-4">
-                {/* العنوان وزر الإغلاق */}
+                {/* Header */}
                 <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
                   <Dialog.Title className="text-lg font-bold">
                     قائمة السجناء
@@ -51,13 +60,12 @@ const getStatusStyle = useCallback((status) => {
                   <button
                     onClick={onClose}
                     className="text-red-500 hover:text-red-700"
-                    aria-label="إغلاق"
                   >
                     <X size={22} />
                   </button>
                 </div>
 
-                {/* شريط البحث والأزرار العلوية */}
+                {/* Filters and actions */}
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <input
@@ -76,19 +84,17 @@ const getStatusStyle = useCallback((status) => {
                     <button className="bg-amber-50 text-amber-800 hover:bg-amber-100 transition px-4 py-2 rounded-md text-sm font-medium">
                       البحث المتقدم
                     </button>
-                    <button
-  className="bg-amber-50 text-amber-800 hover:bg-amber-100 transition px-4 py-2 rounded-md text-sm font-medium"
->
-    <RefreshCw />
-</button>
+                    <button className="bg-amber-50 text-amber-800 hover:bg-amber-100 transition px-4 py-2 rounded-md text-sm font-medium">
+                      <RefreshCw />
+                    </button>
                   </div>
                 </div>
 
-                {/* المحتوى (جدول السجناء - يمكن ربطه بالداتا لاحقًا) */}
+                {/* Table */}
                 <div className="overflow-auto max-h-[70vh]">
-<table className="w-full text-sm text-right   border-separate border-spacing-y-2">
+                  <table className="w-full text-sm text-right border-separate border-spacing-y-2">
                     <thead className="bg-gray-50 text-gray-800 font-medium sticky top-0 rounded-md">
-                      <tr className="">
+                      <tr>
                         <th className="px-4 py-2">الرقم</th>
                         <th className="px-4 py-2">الهوية</th>
                         <th className="px-4 py-2">الاسم</th>
@@ -96,46 +102,65 @@ const getStatusStyle = useCallback((status) => {
                         <th className="px-4 py-2">تاريخ الدخول</th>
                         <th className="px-4 py-2">تاريخ الخروج</th>
                         <th className="px-4 py-2">حالة النزيل</th>
-<th className="px-4 py-2">الإجراء</th>
+                        <th className="px-4 py-2">الإجراء</th>
                       </tr>
                     </thead>
                     <tbody>
-{prisoners.map((prisoner, index) => (
-  <tr key={prisoner.id}>
-    <td className="px-4 py-2">{index + 1}</td>
-    <td className="px-4 py-2">{prisoner.idNumber}</td>
-    <td className="px-4 py-2">{prisoner.fullName}</td>
-    <td className="px-4 py-2">{prisoner.cases?.[0]?.caseType || "-"}</td>
-    <td className="px-4 py-2">{prisoner.cases?.[0]?.caseDate?.gregorian || "-"}</td>
-    <td className="px-4 py-2">{prisoner.cases?.[0]?.endDate?.gregorian || "-"}</td>
-<td className="px-4">
-  <div
-    className={`rounded-md px-3 py-1.5 text-sm text-center font-semibold ${getStatusStyle(
-      prisoner.cases?.[0]?.judgmentType
-    )}`}
-  >
-    {prisoner.cases?.[0]?.judgmentType || "غير معروف"}
-  </div>
-</td>
-
-    <td className="px-4">
-      <button
-        onClick={() => {
-          setSelectedPrisoner(prisoner);
-          onClose();
-        }}
-        className="inline-flex items-center gap-2 bg-amber-50 text-amber-800 px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-amber-100 transition w-full justify-center"
-      >
-        <CheckCircle className="w-4 h-4" />
-        اختر
-      </button>
-    </td>
-  </tr>
-))}
-
+                      {prisoners.map((prisoner, index) => (
+                        <tr
+                          key={prisoner.id}
+                          className={`${
+                            selectedPrisoner?.id === prisoner.id
+                              ? "bg-gray-50 rounded-sm  "
+                              : ""
+                          }`}
+                        >
+                          <td className="px-4 py-2">{index + 1}</td>
+                          <td className="px-4 py-2">{prisoner.idNumber}</td>
+                          <td className="px-4 py-2">{prisoner.fullName}</td>
+                          <td className="px-4 py-2">
+                            {prisoner.cases?.[0]?.caseType || "-"}
+                          </td>
+                          <td className="px-4 py-2">
+                            {prisoner.cases?.[0]?.caseDate?.gregorian || "-"}
+                          </td>
+                          <td className="px-4 py-2">
+                            {prisoner.cases?.[0]?.endDate?.gregorian || "-"}
+                          </td>
+                          <td className="px-4">
+                            <div
+                              className={`rounded-md px-3 py-1.5 text-sm text-center font-semibold ${getStatusStyle(
+                                prisoner.cases?.[0]?.judgmentType
+                              )}`}
+                            >
+                              {prisoner.cases?.[0]?.judgmentType || "غير معروف"}
+                            </div>
+                          </td>
+                          <td className="px-4">
+                            {selectedPrisoner?.id === prisoner.id ? (
+                              <div className=" items-center  bg-amber-50 text-amber-800 font-semibold text-center">
+                                مختار حالياً
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => {
+                                  onSelect(prisoner);
+                                  onClose();
+                                }}
+                                className="inline-flex items-center gap-2 bg-amber-50 text-amber-800 px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-amber-100 transition w-full justify-center"
+                              >
+                                <CheckCircle className="w-4 h-4" />
+                                اختر
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
+
+                {/* Footer pagination */}
                 <div className="flex items-center justify-between mt-4 text-sm text-gray-700 px-2">
                   <div>عرض 11 إلى 20 من 51 سجل</div>
                   <div className="flex items-center gap-2">

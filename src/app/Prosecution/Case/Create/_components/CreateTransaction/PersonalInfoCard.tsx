@@ -1,9 +1,19 @@
-
-// await new Promise(res => setTimeout(res, 20000));
+"use client";
 
 import Image from "next/image";
+import React from "react";
 
-const PersonalInfoCard = ({
+interface PersonalInfoCardProps {
+  fullName: string;
+  idNumber: string;
+  nationality: string;
+  gender: string;
+  religion: string;
+  birthDate: string;
+  imageUrl?: string;
+}
+
+const PersonalInfoCard: React.FC<PersonalInfoCardProps> = ({
   fullName,
   idNumber,
   nationality,
@@ -19,16 +29,16 @@ const PersonalInfoCard = ({
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-between px-4 pt-4">
         <div className="mb-4 sm:mb-0 sm:ml-6">
-          <div className="w-36 h-36 overflow-hidden rounded  ">
+          <div className="w-36 h-36 overflow-hidden rounded">
             <Image
-              src={imageUrl}
+              src={imageUrl || "/images/profile.png"}
               alt="صورة المستخدم"
               width={112}
               height={144}
               className="object-cover w-full h-full"
             />
           </div>
-        </div>        
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-right w-full">
           <div>
             <p className="text-sm text-gray-500">الاسم بالعربية</p>
