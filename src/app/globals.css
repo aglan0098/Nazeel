@@ -1,5 +1,5 @@
 @import "tailwindcss";
-body button{
+body button {
   cursor: pointer !important;
 }
 :root {
@@ -12,7 +12,7 @@ body button{
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
+
   --color-main: #b68c31;
 }
 
@@ -26,5 +26,5 @@ body button{
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans Arabic", sans-serif;
+  /* font-family: "Noto Sans Arabic", sans-serif; */
 }

@@ -21,14 +21,14 @@ export const sidebarData = [
     items: [
       {
         type: "link",
-        label: "مهامي",
-        path: "/Workflow/Tasks",
+        label: "طلباتي",
+        path: "/Workflow/Requests",
         icon: LuFileCog,
       },
       {
         type: "link",
-        label: "طلباتي",
-        path: "/Workflow/Requests",
+        label: "مهامي",
+        path: "/Workflow/Tasks",
         icon: LuFileCog,
       },
       {
@@ -70,7 +70,9 @@ export const sidebarData = [
         id: "medical",
         label: "الرعاية الصحية",
         icon: PiUsersThree,
-        children: [{ label: "الفحص الطبي", path: "/Prisoners/Medical/ViewDoctor" }],
+        children: [
+          { label: "الفحص الطبي", path: "/Prisoners/Medical/ViewDoctor" },
+        ],
       },
       {
         type: "dropdown",
@@ -100,9 +102,7 @@ export const sidebarData = [
         id: "cases",
         label: "القضايا والأحكام",
         icon: IoSettingsOutline,
-        children: [
-          { label: "إضافة", path: "/Prosecution/Case/Create" },
-        ],
+        children: [{ label: "إضافة", path: "/Prosecution/Case/Create" }],
       },
     ],
   },
