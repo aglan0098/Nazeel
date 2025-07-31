@@ -1,5 +1,3 @@
-import { prisoners } from "../mockPrisoners";
-
 export const requests = [
   {
     id: 1,

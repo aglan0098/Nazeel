@@ -33,20 +33,8 @@ export const sidebarData = [
       },
       {
         type: "link",
-        label: "الطلبات المنتهية",
-        path: "/Workflow/FinshedRequests",
-        icon: LuFileCog,
-      },
-      {
-        type: "link",
         label: "الطلبات الخارجية",
         path: "/Integration/ExternalRequests",
-        icon: LuFileCog,
-      },
-      {
-        type: "link",
-        label: "تصحيح البيانات",
-        path: "/Prisoners/DataCorrection",
         icon: LuFileCog,
       },
     ],

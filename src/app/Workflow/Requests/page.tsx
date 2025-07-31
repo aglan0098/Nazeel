@@ -1,15 +1,11 @@
 "use client";
 
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "@/components/ui/pagination";
 
 // icons
 import { CiSearch } from "react-icons/ci";
 import { FaArrowUpWideShort } from "react-icons/fa6";
-import { BiSolidEditAlt } from "react-icons/bi";
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { BsExclamationCircle } from "react-icons/bs";
 import { HiMiniEye } from "react-icons/hi2";
 
 // test data

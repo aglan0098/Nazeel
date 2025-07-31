@@ -1,9 +1,476 @@
-import React from 'react'
+import Prisoner_Info_Card from "@/components/ui/Prisoner_Info_Card";
+import React from "react";
+import { IoCaretDownSharp } from "react-icons/io5";
 
 function Create() {
   return (
-    <div>إجراء استلام</div>
-  )
+    <>
+      <div className="my-10">
+        <label htmlFor="" className="mb-2 block">
+          رقم الهوية
+          <span className="text-red-500 mr-2">*</span>
+        </label>
+        <div className="flex gap-5">
+          <input
+            type="text"
+            name="releaseOrderNumber"
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4"
+          />
+
+          <button className="text-main bg-[#F4F4F0] border border-main px-10 py-2 rounded-2xl cursor-pointer">
+            إضافة إستلام
+          </button>
+        </div>
+      </div>
+
+      {/* <div className="shadow-md border border-gray-100 p-15 text-center">
+        <p>قم بإدخال رقم هوية السجين المراد إستلامة</p>
+      </div> */}
+
+      {/* Prison Info */}
+      <Prisoner_Info_Card
+        caseName={"اسم القضية"}
+        stopDate={"01/01/1997"}
+        wingRoom={"ج - 102"}
+        status={"داخل السجن - موقوف"}
+        name={"محمد"}
+        identityNumber={6767843}
+        prisonnumber={7690}
+        birthDate={"1 / 1 / 2001"}
+        tamem={false}
+        gender={"ذكر"}
+      />
+
+      {/* رقم السجين */}
+      <div className="shadow-md p-10 rounded-2xl my-5">
+        <div className="mb-5 md:mb-2">
+          <label htmlFor="" className="mb-2 block">
+            رقم أمر الإفراج
+            <span className="text-red-500 mr-2">*</span>
+          </label>
+          <input
+            type="text"
+            name="releaseOrderNumber"
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4"
+          />
+        </div>
+      </div>
+
+      {/* بيانات التوقيف */}
+      <div className="shadow-md p-10 rounded-2xl my-5">
+        <h2 className="mb-8 text-xl">بيانات التوقيف</h2>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              رقم التوقيف
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name="releaseOrderNumber"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ دخول السجن
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name="orderDate"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ التوقيف
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name="orderDate"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              مدة التوقيف بالإيام
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ نهاية أمر التوقيف
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              سبب التوقيف
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              جهة إصدار أمر التوقيف
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              جهة التوقف القادم منها السجين
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              الدائرة المختصة بالنظر في القضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              إمكانية الإتصال
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">نعم</option>
+                <option value="option1">لا</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              إمكانية الزيارة
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name="releaseReason"
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">مسموح</option>
+                <option value="option1">غير مسموح</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="my-5 md:my-2">
+          <label htmlFor="" className="mb-2 block">
+            هل يحجز انفراديا بأمر النيابة؟
+            <span className="text-red-500 mr-2">*</span>
+          </label>
+          <div className="flex items-center text-xl gap-5">
+            <input type="radio" name="solo" className="w-5 h-5 accent-main" />
+            <label htmlFor="">نعم</label>
+            <input type="radio" name="solo" className="w-5 h-5 accent-main" />
+            <label htmlFor="">لا</label>
+          </div>
+        </div>
+      </div>
+
+      {/* بيانات أمر الإحالة */}
+      <div className="shadow-md p-10 rounded-2xl my-5">
+        <h2 className="mb-8 text-xl">بيانات أمر الإحالة</h2>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              رقم الإحالة
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name="releaseOrderNumber"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ الإحالة من الجهة
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name="releaseOrderNumber"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ القبض
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name="releaseOrderNumber"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              المنطقة
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name=""
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="my-5 md:mb-0">
+          <label htmlFor="" className="mb-2 block">
+            إرفاق ملف
+            <span className="text-red-500 mr-2">*</span>
+          </label>
+          <input
+            type="file"
+            name="file"
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full cursor-pointer h-30"
+            placeholder="تصفح واختر الملفات التي تريد تحملها من الكمبيوتر الخاص بك"
+          />
+        </div>
+      </div>
+
+      {/* بيانات القضية */}
+      <div className="shadow-md p-10 rounded-2xl my-5">
+        <h2 className="mb-8 text-xl">بيانات القضية </h2>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              رقم القضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name="releaseOrderNumber"
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              مسمي القضية الأساسي
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name=""
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تصنيف القضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name=""
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              مكان القضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="relative">
+              <select
+                name=""
+                className="appearance-none w-full p-4 bg-gray-100 border border-gray-200 rounded-2xl outline-0 text-default"
+              >
+                <option value="">اختر..</option>
+                <option value="option1">Option One</option>
+                <option value="option2">Option Two</option>
+                <option value="option3">Option Three</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+                <IoCaretDownSharp />
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              تاريخ القضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="date"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+        </div>
+
+        <div className="my-5 md:mb-0">
+          <label htmlFor="" className="mb-2 block">
+            الوصف الجرمي للقضية
+            <span className="text-red-500 mr-2">*</span>
+          </label>
+          <textarea
+            name=""
+            id=""
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full cursor-pointer h-30"
+          />
+        </div>
+
+        <div className="my-5 md:mb-0">
+          <label htmlFor="" className="mb-2 block">
+            ارفاق ملف القضية
+            <span className="text-red-500 mr-2">*</span>
+          </label>
+          <input
+            type="file"
+            name="file"
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full cursor-pointer h-30"
+            placeholder="تصفح واختر الملفات التي تريد تحملها من الكمبيوتر الخاص بك"
+          />
+        </div>
+      </div>
+
+      {/* ملاحظات إضافية */}
+      <div className="shadow-md p-10 rounded-2xl my-5">
+        <h2 className="mb-8 text-xl">
+          ملاحظات عامة <span className="text-gray-400">(اختياري)</span>
+        </h2>
+        <textarea
+          name=""
+          id=""
+          placeholder="الوصف"
+          className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full cursor-pointer h-30"
+        />
+      </div>
+
+      {/* الاستلام */}
+      <div className="flex gap-5 justify-end items-center">
+        <button className="py-3 px-15 rounded-xl cursor-pointer bg-main text-white">
+          استلام
+        </button>
+        <button className="py-3 px-15 rounded-xl cursor-pointer bg-gray-300">
+          إلغاء
+        </button>
+      </div>
+    </>
+  );
 }
 
-export default Create
+export default Create;
