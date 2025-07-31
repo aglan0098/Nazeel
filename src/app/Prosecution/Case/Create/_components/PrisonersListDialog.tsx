@@ -138,7 +138,7 @@ export default function PrisonersListDialog({
                           </td>
                           <td className="px-4">
                             {selectedPrisoner?.id === prisoner.id ? (
-                              <div className=" items-center  bg-amber-50 text-amber-800 font-semibold text-center">
+                              <div className=" items-center   text-amber-800 font-semibold text-center">
                                 مختار حالياً
                               </div>
                             ) : (

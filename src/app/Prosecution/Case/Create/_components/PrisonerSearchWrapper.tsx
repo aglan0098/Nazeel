@@ -37,7 +37,7 @@ const PrisonerSearchWrapper: React.FC<PrisonerSearchWrapperProps> = ({
   };
 
   const handleSearch = useCallback(() => {
-    if (search.trim().length < 9 || search.trim().length > 12) return;
+    if (search.trim().length < 9 || search.trim().length > 10) return;
     setLoading(true);
     selectPrisonerById(search.trim());
     setTimeout(() => setLoading(false), 800);
@@ -84,9 +84,9 @@ const PrisonerSearchWrapper: React.FC<PrisonerSearchWrapperProps> = ({
 
           <button
             onClick={handleSearch}
-            disabled={search.trim().length < 9 || search.trim().length > 12|| loading}
+            disabled={search.trim().length < 9 || search.trim().length > 10|| loading}
             className={`px-8 py-2 text-sm font-semibold flex items-center justify-center gap-2 rounded-md transition-colors duration-200 ${
-              search.trim().length < 9 || search.trim().length > 12 || loading
+              search.trim().length < 9 || search.trim().length > 10 || loading
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-[#B9923C] hover:bg-[#a8822f]"
             }`}

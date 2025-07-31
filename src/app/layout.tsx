@@ -1,5 +1,6 @@
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import { Noto_Sans_Arabic } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 // global font
@@ -18,6 +19,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <body>
+              <Toaster position="top-center" />
+
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

@@ -29,12 +29,9 @@ export const prisoners = [
         court: "المحكمة العامة بالنعيرية",
         judgmentDate: "21/01/1447",
         penalties: [
-          {
-            rightType: "حق عام",
-            penaltyType: "سجن",
-            duration: { years: 0, months: 3, days: 0 },
-            suspended: false
-          },
+{
+
+},
           {
             rightType: "حق عام",
             penaltyType: "القصاص",

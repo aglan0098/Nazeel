@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { useRouter } from "next/navigation";
 
 import PersonalInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard";
 import CaseInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/CaseInfoCard";
@@ -10,27 +10,31 @@ import PenaltySection from "@/app/Prosecution/Case/Create/_components/CreateTran
 import JudgmentApprovalFields from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentApprovalFields";
 import PunishmentsSection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PunishmentsSection";
 import type { Prisoner } from "@/types/Prisoner";
-import type { Case } from "@/types/Case"; 
+import type { Case } from "@/types/Case";
 
 interface CreateCaseProps {
   prisoner: Prisoner;
   selectedCase?: Case | null;
-  mode?: 'view' | 'create' | 'edit';
+  mode?: "view" | "create" | "edit";
 }
 
-const CreateCase: React.FC<CreateCaseProps> = ({ prisoner, selectedCase, mode = 'view' }) => {
-  const isReadOnly = mode === 'view';
-  const isCreate = mode === 'create';
-  const isEdit = mode === 'edit';
+const CreateCase: React.FC<CreateCaseProps> = ({
+  prisoner,
+  selectedCase,
+  mode = "view",
+}) => {
+  const isReadOnly = mode === "view";
+  const isCreate = mode === "create";
+  const isEdit = mode === "edit";
 
-  const caseData: Partial<Case> = isCreate ? {} : (selectedCase || prisoner.cases?.[0] || {});
+  const caseData: Partial<Case> = selectedCase || prisoner.cases?.[0] || {};
   const personalData = { ...prisoner };
   delete (personalData as any).cases;
 
   const router = useRouter();
 
   const handleBack = () => {
-    router.push('/Prosecution/Case/Create/');
+    router.push("/Prosecution/Case/Create/");
   };
 
   return (
@@ -49,20 +53,23 @@ const CreateCase: React.FC<CreateCaseProps> = ({ prisoner, selectedCase, mode = 
 
       {/* ✅ بيانات الحكم - تعديل أو قراءة حسب الوضع */}
       <JudgmentInfoCard
-        judgmentNumber={caseData.judgmentNumber || ""}
-        court={caseData.court || ""}
-        judgmentDate={caseData.judgmentDate || ""}
-        judgmentType={caseData.judgmentType || ""}
+        judgmentNumber={isCreate ? "" : caseData.judgmentNumber || ""}
+        court={isCreate ? "" : caseData.court || ""}
+        judgmentDate={isCreate ? "" : caseData.judgmentDate || ""}
+        judgmentType={isCreate ? "" : caseData.judgmentType || ""}
         isReadOnly={isReadOnly}
       />
 
       {/* ✅ العقوبات - فقط في الوضع القابل للتعديل */}
       <div className="my-8">
-        {!isReadOnly && <PenaltySection />}
-        <PunishmentsSection
-          penalties={caseData.penalties || []}
-          isReadOnly={isReadOnly}
-        />
+        {!isReadOnly ? (
+          <PenaltySection />
+        ) : (
+          <PunishmentsSection
+            penalties={caseData.penalties || []}
+            isReadOnly={true}
+          />
+        )}
       </div>
 
       {/* ✅ حقول التصديق - فقط في التعديل */}
@@ -78,10 +85,8 @@ const CreateCase: React.FC<CreateCaseProps> = ({ prisoner, selectedCase, mode = 
       {/* ✅ الأزرار */}
       <div className="flex justify-between mt-6" dir="ltr">
         {(isCreate || isEdit) && (
-          <button
-            className="bg-yellow-800 hover:bg-yellow-900 text-white font-semibold px-6 py-2 rounded-xl shadow-md"
-          >
-            {isCreate ? 'إنشاء' : 'حفظ التعديلات'}
+          <button className="bg-yellow-800 hover:bg-yellow-900 text-white font-semibold px-6 py-2 rounded-xl shadow-md">
+            {isCreate ? "إنشاء" : "حفظ التعديلات"}
           </button>
         )}
 
