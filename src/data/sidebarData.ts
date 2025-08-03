@@ -3,6 +3,7 @@ import { LuFileCog } from "react-icons/lu";
 import { PiUsersThree } from "react-icons/pi";
 import { BsGraphUp } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
+import { LuUserRoundCheck } from "react-icons/lu";
 
 export const sidebarData = [
   {
@@ -91,6 +92,17 @@ export const sidebarData = [
         label: "القضايا والأحكام",
         icon: IoSettingsOutline,
         children: [{ label: "إضافة", path: "/Prosecution/Case/Create" }],
+      },
+            {
+        type: "dropdown",
+        id: "Release",
+        label: "إطلاق سراح",
+        icon: LuUserRoundCheck,
+        children: [
+          { label: "إجراء إفراج", path: "/Prisoners/Releases/Create" },
+          { label: "قائمة طلبات الإفراج", path: "#" },
+          { label: " إعادة تسجين", path: "#" },
+        ],
       },
     ],
   },

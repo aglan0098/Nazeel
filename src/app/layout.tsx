@@ -1,4 +1,5 @@
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata = {
@@ -10,6 +11,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <body>
+              <Toaster position="top-center" />
+
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
