@@ -1,5 +1,5 @@
 "use client";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/general/skeleton";
 
 const labels = [
   "الاسم بالعربية",

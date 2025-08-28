@@ -1,8 +1,25 @@
-import Prisoner_Info_Card from "@/components/ui/Prisoner_Info_Card";
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
+import { Dialog, DialogPanel } from "@headlessui/react";
+// icons
 import { IoCaretDownSharp } from "react-icons/io5";
+import { BsExclamationCircle } from "react-icons/bs";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 function Create() {
+  // check prison has solitary or not
+  const [solitary, setSolitary] = useState(false);
+
+  const handelSolitary = (e) => {
+    setSolitary(e.target.value === "true");
+  };
+
+  // handle confirmation dialog logic
+  const [openAskDialog, setOpenAskDialog] = useState(false);
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+
   return (
     <>
       <div className="my-10">
@@ -14,7 +31,7 @@ function Create() {
           <input
             type="text"
             name="releaseOrderNumber"
-            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4"
+            className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-3"
           />
 
           <button className="text-main bg-[#F4F4F0] border border-main px-10 py-2 rounded-2xl cursor-pointer">
@@ -28,7 +45,7 @@ function Create() {
       </div> */}
 
       {/* Prison Info */}
-      <Prisoner_Info_Card
+      {/* <Prisoner_Info_Card
         caseName={"اسم القضية"}
         stopDate={"01/01/1997"}
         wingRoom={"ج - 102"}
@@ -39,13 +56,16 @@ function Create() {
         birthDate={"1 / 1 / 2001"}
         tamem={false}
         gender={"ذكر"}
-      />
+      /> */}
 
       {/* رقم السجين */}
-      <div className="shadow-md p-10 rounded-2xl my-5">
-        <div className="mb-5 md:mb-2">
+      <div className="shadow-md rounded-2xl my-5">
+        <h2 className="text-xl border-b-2 border-gray-200 p-4">
+          النهاية الطرفية
+        </h2>
+        <div className="p-7">
           <label htmlFor="" className="mb-2 block">
-            رقم أمر الإفراج
+            الرقم العشري
             <span className="text-red-500 mr-2">*</span>
           </label>
           <input
@@ -57,10 +77,12 @@ function Create() {
       </div>
 
       {/* بيانات التوقيف */}
-      <div className="shadow-md p-10 rounded-2xl my-5">
-        <h2 className="mb-8 text-xl">بيانات التوقيف</h2>
+      <div className="shadow-md rounded-2xl my-5">
+        <h2 className="text-xl border-b-2 border-gray-200 p-4">
+          بيانات التوقيف
+        </h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full my-7 px-7">
           <div className="mb-5 md:mb-2">
             <label htmlFor="" className="mb-2 block">
               رقم التوقيف
@@ -240,25 +262,55 @@ function Create() {
           </div>
         </div>
 
-        <div className="my-5 md:my-2">
-          <label htmlFor="" className="mb-2 block">
-            هل يحجز انفراديا بأمر النيابة؟
-            <span className="text-red-500 mr-2">*</span>
-          </label>
-          <div className="flex items-center text-xl gap-5">
-            <input type="radio" name="solo" className="w-5 h-5 accent-main" />
-            <label htmlFor="">نعم</label>
-            <input type="radio" name="solo" className="w-5 h-5 accent-main" />
-            <label htmlFor="">لا</label>
+        <div className="px-7 pb-7 md:grid grid-cols-3 lg:grid-cols-4">
+          <div className="mb-5 md:mb-0">
+            <label htmlFor="" className="mb-2 block">
+              هل يحجز انفراديا بأمر النيابة؟
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <div className="flex items-center text-xl gap-5">
+              <input
+                type="radio"
+                name="solo"
+                className="w-5 h-5 accent-main"
+                value="true"
+                onChange={handelSolitary}
+              />
+              <label htmlFor="">نعم</label>
+              <input
+                type="radio"
+                name="solo"
+                className="w-5 h-5 accent-main"
+                value="false"
+                onChange={handelSolitary}
+              />
+              <label htmlFor="">لا</label>
+            </div>
           </div>
+
+          {solitary && (
+            <div>
+              <label htmlFor="" className="mb-2 block">
+                أيام الحبس الإنفرادي
+                <span className="text-red-500 mr-2">*</span>
+              </label>
+              <input
+                type="text"
+                name=""
+                className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-3"
+              />
+            </div>
+          )}
         </div>
       </div>
 
       {/* بيانات أمر الإحالة */}
-      <div className="shadow-md p-10 rounded-2xl my-5">
-        <h2 className="mb-8 text-xl">بيانات أمر الإحالة</h2>
+      <div className="shadow-md rounded-2xl my-5">
+        <h2 className="text-xl border-b-2 border-gray-200 p-4">
+          بيانات أمر الإحالة
+        </h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full my-7 px-7">
           <div className="mb-5 md:mb-2">
             <label htmlFor="" className="mb-2 block">
               رقم الإحالة
@@ -315,9 +367,9 @@ function Create() {
           </div>
         </div>
 
-        <div className="my-5 md:mb-0">
+        <div className="px-7 pb-7">
           <label htmlFor="" className="mb-2 block">
-            إرفاق ملف
+            مذكرة التوقيف - الامر المستند عليه بإيقاف السجين
             <span className="text-red-500 mr-2">*</span>
           </label>
           <input
@@ -330,10 +382,12 @@ function Create() {
       </div>
 
       {/* بيانات القضية */}
-      <div className="shadow-md p-10 rounded-2xl my-5">
-        <h2 className="mb-8 text-xl">بيانات القضية </h2>
+      <div className="shadow-md rounded-2xl my-5">
+        <h2 className="text-xl border-b-2 border-gray-200 p-4">
+          بيانات القضية
+        </h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 w-full my-7 px-7">
           <div className="mb-5 md:mb-2">
             <label htmlFor="" className="mb-2 block">
               رقم القضية
@@ -419,9 +473,53 @@ function Create() {
               className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
             />
           </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              عدد المتهمين بالقضية
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              عدد المحكوم عليهم
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              عدد المحالين لمحكمة الأحداث
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
+          <div className="mb-5 md:mb-2">
+            <label htmlFor="" className="mb-2 block">
+              عدد المؤجل الحكم عليهم
+              <span className="text-red-500 mr-2">*</span>
+            </label>
+            <input
+              type="text"
+              name=""
+              className="bg-gray-100 border border-gray-200 rounded-2xl text-gray-500 outline-0 p-4 w-full"
+            />
+          </div>
         </div>
 
-        <div className="my-5 md:mb-0">
+        <div className="px-7 pb-7">
           <label htmlFor="" className="mb-2 block">
             الوصف الجرمي للقضية
             <span className="text-red-500 mr-2">*</span>
@@ -433,7 +531,7 @@ function Create() {
           />
         </div>
 
-        <div className="my-5 md:mb-0">
+        <div className="px-7 pb-7">
           <label htmlFor="" className="mb-2 block">
             ارفاق ملف القضية
             <span className="text-red-500 mr-2">*</span>
@@ -462,13 +560,100 @@ function Create() {
 
       {/* الاستلام */}
       <div className="flex gap-5 justify-end items-center">
-        <button className="py-3 px-15 rounded-xl cursor-pointer bg-main text-white">
+        <button
+          className="py-3 px-15 rounded-xl cursor-pointer bg-main text-white"
+          onClick={() => setOpenAskDialog(true)}
+        >
           استلام
         </button>
         <button className="py-3 px-15 rounded-xl cursor-pointer bg-gray-300">
           إلغاء
         </button>
       </div>
+
+      {/* Ask Dialog */}
+      <Dialog
+        open={openAskDialog}
+        onClose={() => setOpenAskDialog(false)}
+        className="relative z-50"
+      >
+        {/* overlay */}
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+          aria-hidden="true"
+        />
+
+        {/* content */}
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <DialogPanel className="bg-white rounded-xl shadow-xl w-auto max-h-[90vh] overflow-hidden p-8">
+            <BsExclamationCircle className="text-main text-5xl m-auto" />
+            <p className="text-center text-xl my-5">لإتمام عملية الإستلام</p>
+
+            <div className="bg-[#F5F5F5] border border-[#F0E8CC] p-5 rounded-xl my-5">
+              <label htmlFor="" className="mb-5 text-lg block">
+                هل تحتاج موافقة شئون السجناء؟
+                <span className="text-red-500 mr-2">*</span>
+              </label>
+              <div className="flex items-center text-xl gap-5">
+                <input
+                  type="radio"
+                  name=""
+                  className="w-5 h-5 accent-main"
+                  value="true"
+                />
+                <label htmlFor="">نعم</label>
+                <input
+                  type="radio"
+                  name=""
+                  className="w-5 h-5 accent-main"
+                  value="false"
+                />
+                <label htmlFor="">لا</label>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-7 m-auto w-[50%] justify-center">
+              <button
+                className="bg-main text-white px-20 py-2 rounded-xl cursor-pointer"
+                onClick={() => {
+                  setOpenAskDialog(false);
+                  setOpenConfirmDialog(true);
+                }}
+              >
+                إستلام
+              </button>
+              <button
+                className="bg-gray-200 px-20 py-2 rounded-xl cursor-pointer"
+                onClick={() => setOpenAskDialog(false)}
+              >
+                إالغاء
+              </button>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
+
+      {/* Confirm Dialog */}
+      <Dialog
+        open={openConfirmDialog}
+        onClose={() => setOpenConfirmDialog(false)}
+        className="relative z-50"
+      >
+        {/* overlay */}
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+          aria-hidden="true"
+        />
+
+        {/* content */}
+        <div className="fixed inset-0 flex items-center justify-center">
+          <DialogPanel className="bg-white rounded-xl shadow-xl w-[80%] md:w-[30%] max-h-[90vh] overflow-hidden">
+            <FaRegCircleCheck className="text-green-600 text-5xl m-auto my-5" />
+
+            <p className="my-7 text-xl text-center">تم إنشاء الطلب</p>
+          </DialogPanel>
+        </div>
+      </Dialog>
     </>
   );
 }

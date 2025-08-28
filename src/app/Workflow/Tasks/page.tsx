@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import Pagination from "@/components/ui/pagination";
+import Pagination from "@/components/general/pagination";
 import { requests } from "@/data/test_data/requests";
 
 // icons
@@ -43,6 +44,13 @@ function Tasks() {
   useEffect(() => {
     fetchTasks(currentPage);
   }, [currentPage]);
+
+  // Navigate
+  const router = useRouter();
+
+  const goToPage = (id) => {
+    router.push(`/Workflow/Tasks/${id}`);
+  };
 
   return (
     <>
@@ -166,11 +174,17 @@ function Tasks() {
                     {item.request_status}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap text-2xl flex items-center justify-center gap-5">
-                    <button className="cursor-pointer text-gray-400">
+                    <button
+                      className="cursor-pointer text-gray-400"
+                      onClick={() => goToPage(item.id)}
+                    >
                       <HiMiniEye />
                     </button>
                     {activeTab === "tasks" && (
-                      <button className="border border-main text-main bg-[#F4F4F0] rounded-xl text-sm p-2 px-6 cursor-pointer">
+                      <button
+                        className="border border-main text-main bg-[#F4F4F0] rounded-xl text-sm p-2 px-6 cursor-pointer"
+                        onClick={() => goToPage(item.id)}
+                      >
                         إتخاذ إجراء
                       </button>
                     )}

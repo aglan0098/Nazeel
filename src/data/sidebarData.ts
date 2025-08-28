@@ -45,6 +45,16 @@ export const sidebarData = [
     items: [
       {
         type: "dropdown",
+        id: "search",
+        label: "استعلام",
+        icon: LuFileCog,
+        children: [
+          { label: "قائمة النزلاء", path: "/Prisoners/List" },
+          { label: "بحث شامل", path: "/Prisoners/All" },
+        ],
+      },
+      {
+        type: "dropdown",
         id: "receive",
         label: "استلام سجين",
         icon: LuFileCog,
@@ -79,8 +89,11 @@ export const sidebarData = [
         label: "العفو",
         icon: IoSettingsOutline,
         children: [
-          { label: "إجراء العفو", path: "#" },
-          { label: "قائمة طلبات العفو", path: "#" },
+          { label: "إجراء العفو", path: "/Prisoners/Pardoning/Create" },
+          {
+            label: "قائمة طلبات العفو",
+            path: "/Prisoners/Pardoning/PardoningList",
+          },
           { label: "قامة طلبات العفو السابقة", path: "#" },
           { label: "الاختبارات", path: "#" },
           { label: "قائمة الاختبارات", path: "#" },
@@ -93,7 +106,7 @@ export const sidebarData = [
         icon: IoSettingsOutline,
         children: [{ label: "إضافة", path: "/Prosecution/Case/Create" }],
       },
-            {
+      {
         type: "dropdown",
         id: "Release",
         label: "إطلاق سراح",

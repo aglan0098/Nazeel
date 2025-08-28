@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Pagination from "@/components/ui/pagination";
+import { useRouter } from "next/navigation";
+import Pagination from "@/components/general/pagination";
 
 // icons
 import { CiSearch } from "react-icons/ci";
@@ -12,6 +13,13 @@ import { HiMiniEye } from "react-icons/hi2";
 import { requests } from "@/data/test_data/requests";
 
 function Requests() {
+  // Navigate
+  const router = useRouter();
+
+  const goToPage = (id) => {
+    router.push(`/Workflow/Requests/${id}`);
+  };
+
   // Pagination logic
   // const [requests, setRequests] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -139,7 +147,10 @@ function Requests() {
                     {item.request_status}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap text-2xl">
-                    <button className="cursor-pointer text-gray-400">
+                    <button
+                      className="cursor-pointer text-gray-400"
+                      onClick={() => goToPage(item.id)}
+                    >
                       <HiMiniEye />
                     </button>
                   </td>

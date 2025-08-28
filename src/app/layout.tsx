@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <body>
-              <Toaster position="top-center" />
+        <Toaster position="top-center" />
 
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

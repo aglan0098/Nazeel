@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Request_Info_Card from "@/components/ui/Request_Info_Card";
-import Prisoner_Info_Card from "@/components/ui/Prisoner_Info_Card";
-
+import Request_Info_Card from "@/components/general/Request_Info_Card";
+import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
+import { prisoners } from "@/data/mockPrisoners";
 // icons
 import { IoCaretDownSharp } from "react-icons/io5";
 import { FaArrowUpWideShort } from "react-icons/fa6";
@@ -89,18 +89,7 @@ function page() {
       />
 
       {/* Prison Info */}
-      <Prisoner_Info_Card
-        caseName={"اسم القضية"}
-        stopDate={"01/01/1997"}
-        wingRoom={"ج - 102"}
-        status={"داخل السجن - موقوف"}
-        name={"محمد"}
-        identityNumber={6767843}
-        prisonnumber={7690}
-        birthDate={"1 / 1 / 2001"}
-        tamem={false}
-        gender={"ذكر"}
-      />
+      <Prisoner_Info_Card data={prisoners[0]} />
 
       {/* القضايا */}
       <div className="border border-gray-200 rounded-2xl p-5 shadow-md mb-7">

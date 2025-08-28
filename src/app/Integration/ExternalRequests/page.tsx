@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import Pagination from "@/components/ui/pagination";
+import Pagination from "@/components/general/pagination";
 import { externalRequests } from "@/data/test_data/externalRequests";
 
 // icons
@@ -43,6 +44,17 @@ function ExternalRequests() {
   useEffect(() => {
     fetchExternalRequests(currentPage);
   }, [currentPage]);
+
+  // Navigate
+  const router = useRouter();
+
+  const goToPage = (id) => {
+    router.push(`/Integration/ExternalRequests/${id}`);
+  };
+
+  const goToDonePage = (id) => {
+    router.push(`/Integration/ExternalRequests/done/${id}`);
+  };
 
   return (
     <>
@@ -161,13 +173,19 @@ function ExternalRequests() {
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap text-2xl flex items-center justify-center gap-5">
                     {activeTab === "requests" && (
-                      <button className="border border-main text-main bg-[#F4F4F0] rounded-xl text-sm p-2 px-6 cursor-pointer">
+                      <button
+                        className="border border-main text-main bg-[#F4F4F0] rounded-xl text-sm p-2 px-6 cursor-pointer"
+                        onClick={() => goToPage(item.id)}
+                      >
                         إتخاذ إجراء
                       </button>
                     )}
                     {activeTab === "done" && (
                       <div className="flex gap-5">
-                        <button className="cursor-pointer text-gray-400">
+                        <button
+                          className="cursor-pointer text-gray-400"
+                          onClick={() => goToDonePage(item.id)}
+                        >
                           <HiMiniEye />
                         </button>
                         <button className="cursor-pointer text-gray-400">

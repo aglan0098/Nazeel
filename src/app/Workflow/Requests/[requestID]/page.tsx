@@ -1,7 +1,8 @@
 import React from "react";
 import { FiCopy } from "react-icons/fi";
-import Prison_Info_Card from "@/components/ui/Prisoner_Info_Card";
-import Request_Info_Card from "@/components/ui/Request_Info_Card";
+import Prison_Info_Card from "@/components/general/Prisoner_Info_Card";
+import Request_Info_Card from "@/components/general/Request_Info_Card";
+import { prisoners } from "@/data/mockPrisoners";
 
 function page() {
   return (
@@ -55,7 +56,7 @@ function page() {
       </div>
 
       {/* Prison Info */}
-      <Prison_Info_Card
+      {/* <Prison_Info_Card
         caseName={"اسم القضية"}
         stopDate={"01/01/1997"}
         wingRoom={"ج - 102"}
@@ -66,7 +67,9 @@ function page() {
         birthDate={"1 / 1 / 2001"}
         tamem={false}
         gender={"ذكر"}
-      />
+      /> */}
+
+      <Prison_Info_Card data={prisoners[0]} />
     </>
   );
 }
