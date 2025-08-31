@@ -1,4 +1,3 @@
-import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -13,7 +12,7 @@ export default function RootLayout({ children }) {
       <body>
         <Toaster position="top-center" />
 
-        <LayoutWrapper>{children}</LayoutWrapper>
+        {children}
       </body>
     </html>
   );
