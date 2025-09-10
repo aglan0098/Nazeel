@@ -8,7 +8,9 @@ import Image from "next/image";
 import { TbArrowBarToRight, TbArrowBarToLeft } from "react-icons/tb";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { LuFileDown } from "react-icons/lu";
+// data
 import { sidebarData } from "@/data/sidebarData";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Sidebartest({ isOpen, toggleSidebar }) {
   // Toggle Menus
@@ -17,6 +19,30 @@ export default function Sidebartest({ isOpen, toggleSidebar }) {
   const toggleMenu = (menu) => {
     setOpenMenu((prev) => (prev === menu ? null : menu));
   };
+
+  // filtered sidebar items
+  const user = useAuth();
+  const filteredItems = sidebarData.map((group) => ({
+    ...group,
+    items: group.items
+      .map((item) => {
+        if (item.type === "dropdown") {
+          return {
+            ...item,
+            children: item.children.filter(
+              (child) =>
+                !child.permission ||
+                user?.user.permissions.includes(child.permission)
+            ),
+          };
+        }
+        return !item.permission ||
+          user?.user.permissions.includes(item.permission)
+          ? item
+          : null;
+      })
+      .filter(Boolean),
+  }));
 
   return (
     <div
@@ -47,7 +73,7 @@ export default function Sidebartest({ isOpen, toggleSidebar }) {
       {/* Sidebar Menu */}
       <nav className="flex-1 overflow-y-auto text-sm text-gray-600 scrollbar-hide">
         <ul className="space-y-2 p-2 text-[15px]">
-          {sidebarData.map((section, index) => (
+          {filteredItems.map((section, index) => (
             <div key={index}>
               <p className="font-bold text-sm mt-5 mb-2 p-2 text-gray-500">
                 {section.groupLabel ? section.groupLabel : ""}
