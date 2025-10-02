@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
 // form
 import SmartForm from "@/components/general/formComponent";
-import Pagination from "@/components/general/pagination";
+import Pagination from "@/components/general/table/Pagination";
 import formConfig from "./formConfig";
 
 // data

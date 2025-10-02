@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Pagination from "@/components/general/pagination";
+import Pagination from "@/components/general/table/Pagination";
 import { prisoners } from "@/data/mockPrisoners";
 import { CiSearch } from "react-icons/ci";
 import { FaArrowUpWideShort } from "react-icons/fa6";

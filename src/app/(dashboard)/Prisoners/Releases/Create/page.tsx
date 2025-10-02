@@ -7,10 +7,16 @@ import IdentitySearchWrapper from "./_components/IdentitySearchWrapper";
 import ReleaseFormSection from "./_components/ReleaseFormSection";
 import { Search, OctagonX } from "lucide-react";
 
-const PersonalInfoCard = lazy(() => import("@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard"));
-const CasesTable = lazy(() => import("@/app/Prosecution/Case/Create/_components/CasesTable"));
-const PersonalInfoSkeleton = lazy(() => import("@/app/Prosecution/Case/Create/_components/PersonalInfoSkeleton"));
-const CasesTableSkeleton = lazy(() => import("@/app/Prosecution/Case/Create/_components/CasesTableSkeleton"));
+
+import PersonalInfoSkeleton from "@/app/(dashboard)/Prosecution/Case/Create/_components/PersonalInfoSkeleton";
+import PersonalInfoCard from "@/app/(dashboard)/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard";
+import CasesTableSkeleton from "@/app/(dashboard)/Prosecution/Case/Create/_components/CasesTableSkeleton";
+import CasesTable from "@/app/(dashboard)/Prosecution/Case/Create/_components/CasesTable";
+
+// const PersonalInfoCard = lazy(() => import("@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard"));
+// const CasesTable = lazy(() => import("@/app/Prosecution/Case/Create/_components/CasesTable"));
+// const PersonalInfoSkeleton = lazy(() => import("@/app/Prosecution/Case/Create/_components/PersonalInfoSkeleton"));
+// const CasesTableSkeleton = lazy(() => import("@/app/Prosecution/Case/Create/_components/CasesTableSkeleton"));
 
 export default function CreateReleases() {
   const { selectedPrisoner, notFound, resetNotFound } = usePrisonerStore();

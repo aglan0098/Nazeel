@@ -6,11 +6,11 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 export const sidebarData = [
   {
-    groupLabel: "الرئيسية",
+    // groupLabel: "الرئيسية",
     items: [
       {
         type: "link",
-        label: "لوحة التحكم",
+        label: "الرئيسية",
         path: "/",
         icon: RxDashboard,
         // permission: "Permission.Dashboard.View",
@@ -22,20 +22,6 @@ export const sidebarData = [
     items: [
       {
         type: "link",
-        label: "تيست",
-        path: "/test",
-        icon: LuFileCog,
-        // permission: "Permission.Workflow.Requests.View",
-      },
-      {
-        type: "link",
-        label: "طلباتي",
-        path: "/Workflow/Requests",
-        icon: LuFileCog,
-        permission: "Permission.Workflow.Requests.View",
-      },
-      {
-        type: "link",
         label: "مهامي",
         path: "/Workflow/Tasks",
         icon: LuFileCog,
@@ -43,8 +29,22 @@ export const sidebarData = [
       },
       {
         type: "link",
+        label: "طلباتي",
+        path: "/Workflow/Requests",
+        icon: LuFileCog,
+        // permission: "Permission.Workflow.Requests.View",
+      },
+      {
+        type: "link",
+        label: "الطلبات المنتهية",
+        path: "/Workflow/FinshedRequests",
+        icon: LuFileCog,
+        // permission: "Permission.Workflow.Requests.View",
+      },
+      {
+        type: "link",
         label: "الطلبات الخارجية",
-        path: "/Integration/ExternalRequests",
+        path: "/Workflow/ExternalRequests",
         icon: LuFileCog,
         // permission: "Permission.Integration.ExternalRequests",
       },
@@ -62,12 +62,12 @@ export const sidebarData = [
           {
             label: "قائمة النزلاء",
             path: "/Prisoners/List",
-            permission: "Permission.Prisoners.List.View",
+            // permission: "Permission.Prisoners.List.View",
           },
           {
             label: "بحث شامل",
             path: "/Prisoners/All",
-            permission: "Permission.Prisoners.All.View",
+            // permission: "Permission.Prisoners.All.View",
           },
         ],
       },
@@ -80,17 +80,17 @@ export const sidebarData = [
           {
             label: "إجراء إستلام",
             path: "/Prisoners/Receives/Create",
-            permission: "Permission.PrisonerRelease.Create",
+            // permission: "Permission.PrisonerRelease.Create",
           },
           {
             label: "تسجيل سجين قديم",
             path: "/Prisoners/Receives/FastCreate",
-            permission: "Permission.Prisoners.Receives.FastCreate",
+            // permission: "Permission.Prisoners.Receives.FastCreate",
           },
           {
             label: "قائمة الإجراءات",
             path: "/Prisoners/Receives/Procedures",
-            permission: "Permission.Prisoners.Receives.Procedures.View",
+            // permission: "Permission.Prisoners.Receives.Procedures.View",
           },
         ],
       },
@@ -103,7 +103,7 @@ export const sidebarData = [
           {
             label: "الفحص الطبي",
             path: "/Prisoners/Medical/ViewDoctor",
-            permission: "Permission.Prisoners.Medical.ViewDoctor",
+            // permission: "Permission.Prisoners.Medical.ViewDoctor",
           },
         ],
       },
@@ -116,12 +116,12 @@ export const sidebarData = [
           {
             label: "إجراء نقل",
             path: "/Prisoners/Transfers/Create",
-            permission: "Permission.Prisoners.Transfers.Create",
+            // permission: "Permission.Prisoners.Transfers.Create",
           },
           {
             label: "قائمة الإجراءات",
             path: "/Prisoners/Transfers",
-            permission: "Permission.Prisoners.Transfers.View",
+            // permission: "Permission.Prisoners.Transfers.View",
           },
         ],
       },
@@ -134,27 +134,27 @@ export const sidebarData = [
           {
             label: "إجراء العفو",
             path: "/Prisoners/Pardoning/Create",
-            permission: "Permission.Prisoners.Pardoning.Create",
+            // permission: "Permission.Prisoners.Pardoning.Create",
           },
           {
             label: "قائمة طلبات العفو",
             path: "/Prisoners/Pardoning/PardoningList",
-            permission: "Permission.Prisoners.Pardoning.List.View",
+            // permission: "Permission.Prisoners.Pardoning.List.View",
           },
           {
             label: "قامة طلبات العفو السابقة",
             path: "#",
-            permission: "Permission.Prisoners.Pardoning.Previous.View",
+            // permission: "Permission.Prisoners.Pardoning.Previous.View",
           },
           {
             label: "الاختبارات",
             path: "#",
-            permission: "Permission.Prisoners.Pardoning.Tests.Create",
+            // permission: "Permission.Prisoners.Pardoning.Tests.Create",
           },
           {
             label: "قائمة الاختبارات",
             path: "#",
-            permission: "Permission.Prisoners.Pardoning.Tests.View",
+            // permission: "Permission.Prisoners.Pardoning.Tests.View",
           },
         ],
       },
@@ -167,7 +167,7 @@ export const sidebarData = [
           {
             label: "إضافة",
             path: "/Prosecution/Case/Create",
-            permission: "Permission.Prosecution.Case.Create",
+            // permission: "Permission.Prosecution.Case.Create",
           },
         ],
       },
@@ -180,17 +180,17 @@ export const sidebarData = [
           {
             label: "إجراء إفراج",
             path: "/Prisoners/Releases/Create",
-            permission: "Permission.Prisoners.Releases.Create",
+            // permission: "Permission.Prisoners.Releases.Create",
           },
           {
             label: "قائمة طلبات الإفراج",
             path: "#",
-            permission: "Permission.Prisoners.Releases.List.View",
+            // permission: "Permission.Prisoners.Releases.List.View",
           },
           {
             label: "إعادة تسجين",
             path: "#",
-            permission: "Permission.Prisoners.Releases.ReImprison",
+            // permission: "Permission.Prisoners.Releases.ReImprison",
           },
         ],
       },
@@ -219,6 +219,136 @@ export const sidebarData = [
             label: "أنواع السجون",
             path: "/Lookups/PrisonTypes",
             // permission: "Permission.Prisoners.All.View",
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        id: "areas",
+        label: "إداره المناطق",
+        icon: LuFileCog,
+        children: [
+          {
+            label: "المناطق",
+            path: "/Lookups/Areas",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "المدن",
+            path: "/Lookups/Cities",
+            // permission: "Permission.Prisoners.All.View",
+          },
+          {
+            label: "الأحياء",
+            path: "/Lookups/Neighborhoods",
+            // permission: "Permission.Prisoners.All.View",
+          },
+          {
+            label: "المحاكم",
+            path: "/Lookups/GenericCourts",
+            // permission: "Permission.Prisoners.All.View",
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        id: "residence",
+        label: "إداره التسكين",
+        icon: LuFileCog,
+        children: [
+          {
+            label: "المجمعات",
+            path: "/Lookups/Complexes",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "الوحدات",
+            path: "/Lookups/Units",
+            // permission: "Permission.Prisoners.All.View",
+          },
+          {
+            label: "الأجنحة",
+            path: "/Lookups/Suites",
+            // permission: "Permission.Prisoners.All.View",
+          },
+          {
+            label: "أنواع الأجنحة",
+            path: "/Lookups/SuiteTypes",
+            // permission: "Permission.Prisoners.All.View",
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        id: "ExternalAuthorities",
+        label: "إدارة جهات إصدار أمر التوقف",
+        icon: LuFileCog,
+        children: [
+          {
+            label: "جهات إصدار أمر التوقف",
+            path: "/Lookups/ExternalAuthorities",
+            // permission: "Permission.Prisoners.List.View",
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        id: "ArrestAuthorities",
+        label: "إدارة جهات القبض",
+        icon: LuFileCog,
+        children: [
+          {
+            label: "جهات القبض",
+            path: "/Lookups/ArrestAuthorities",
+            // permission: "Permission.Prisoners.List.View",
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        id: "casesandpenalities",
+        label: "إدارة القضايا والعقوبات والتوقيف",
+        icon: LuFileCog,
+        children: [
+          {
+            label: "أنواع القضايا",
+            path: "/Lookups/CaseCategories",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "أنواع الأحكام",
+            path: "/Lookups/PenalityTypes",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "أنواع الإفراج",
+            path: "/Lookups/ReleaseTypes",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "مدة التوقف",
+            path: "/Lookups/ArrestDurations",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "أسباب التوقف",
+            path: "/Lookups/ArrestReasons",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "أنواع المصادرة",
+            path: "/Lookups/ConfiscationTypes",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "جهة التأييد",
+            path: "/Lookups/UpholdInstitutions",
+            // permission: "Permission.Prisoners.List.View",
+          },
+          {
+            label: "أسباب عودة سجين",
+            path: "/Lookups/ReturnReasons",
+            // permission: "Permission.Prisoners.List.View",
           },
         ],
       },

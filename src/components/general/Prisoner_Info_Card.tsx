@@ -24,19 +24,19 @@ function Prisoner_Info_Card({ data }: CardProps) {
       <div className="md:flex gap-3 items-center justify-between py-4 px-10 bg-white rounded-lg">
         <div className="flex gap-3 mb-3 md:mb-0">
           <p className="text-gray-500 text-lg">نوع القضية: </p>
-          <p className="text-lg">{data.cases?.[0]?.caseType || "--"}</p>
+          <p className="text-lg">{data?.cases?.[0]?.caseType || "--"}</p>
         </div>
         <div className="flex gap-3 mb-3 md:mb-0">
           <p className="text-gray-500 text-lg">تاريخ التوقف:</p>
-          <p className="text-lg">{data.stopDate || "--"}</p>
+          <p className="text-lg">{data?.stopDate || "--"}</p>
         </div>
         <div className="flex gap-3 mb-3 md:mb-0">
           <p className="text-gray-500 text-lg">الجناح - الغرفة:</p>
-          <p className="text-lg">{data.wingRoom || "--"}</p>
+          <p className="text-lg">{data?.wingRoom || "--"}</p>
         </div>
         <div className="flex gap-3">
           <p className="text-gray-500 text-lg">الحالة: </p>
-          <p className="text-lg">{data.status || "--"}</p>
+          <p className="text-lg">{data?.status || "--"}</p>
         </div>
       </div>
 
@@ -51,36 +51,36 @@ function Prisoner_Info_Card({ data }: CardProps) {
           <div>
             <div className="mb-5">
               <p className="text-gray-500 mb-2">الأسم بالعربية</p>
-              <p className="text-lg">{data.fullName || "--"}</p>
+              <p className="text-lg">{data?.fullName || "--"}</p>
             </div>
 
             <div>
               <p className="text-gray-500 mb-2">تاريخ الميلاد</p>
-              <p>{data.birthDate || "--"}</p>
+              <p>{data?.birthDate || "--"}</p>
             </div>
           </div>
 
           <div>
             <div className="mb-5">
               <p className="text-gray-500 mb-2">رقم الهوية</p>
-              <p className="text-lg">{data.idNumber || "--"}</p>
+              <p className="text-lg">{data?.idNumber || "--"}</p>
             </div>
 
             <div>
               <p className="text-gray-500 mb-2">هل يوجد تعاميم</p>
-              <p>{data.tamem || "--"}</p>
+              <p>{data?.tamem || "--"}</p>
             </div>
           </div>
 
           <div>
             <div className="mb-5">
               <p className="text-gray-500 mb-2">رقم السجن</p>
-              <p className="text-lg">{data.id || "--"}</p>
+              <p className="text-lg">{data?.id || "--"}</p>
             </div>
 
             <div>
               <p className="text-gray-500 mb-2">الجنس</p>
-              <p>{data.gender || "--"}</p>
+              <p>{data?.gender || "--"}</p>
             </div>
           </div>
         </div>

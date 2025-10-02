@@ -1,0 +1,91 @@
+export const mockData = {
+  draw: 2,
+  data: [
+    {
+      id: "34538cfb-96e2-4499-1fa2-08dd0df023b7",
+      name: "الوحدة  الأولى",
+      complexId: "e1d6e513-ad20-4795-ded0-08dd0df01512",
+      complexName: "المجمع  الأول",
+    },
+    {
+      id: "df08bca4-8852-4b80-fea6-08dd32ccc579",
+      name: "الوحدة 1 الثالث",
+      complexId: "4222ad5a-b264-4dc0-023e-08dd2b000443",
+      complexName: "المجمع الثاني",
+    },
+    {
+      id: "7e4e65e5-5b40-49ab-fea5-08dd32ccc579",
+      name: "الوحدة 1 الثاني",
+      complexId: "4222ad5a-b264-4dc0-023e-08dd2b000443",
+      complexName: "المجمع الثاني",
+    },
+    {
+      id: "6f32d2cd-c14e-4b0f-fea7-08dd32ccc579",
+      name: "الوحدة 1 الرابع",
+      complexId: "4222ad5a-b264-4dc0-023e-08dd2b000443",
+      complexName: "المجمع الثاني",
+    },
+    {
+      id: "ce29ef0b-9c4c-4d26-fea8-08dd32ccc579",
+      name: "الوحدة الاول",
+      complexId: "816aebe9-9007-409b-023f-08dd2b000443",
+      complexName: "المجمع الثالث",
+    },
+    {
+      id: "14bed967-7740-451b-d69a-08dd391d0be8",
+      name: "الوحدة الاول",
+      complexId: "d1934b23-226f-4746-0242-08dd2b000443",
+      complexName: "المجمع الاول ",
+    },
+    {
+      id: "f5524254-be18-4767-fd1e-08dd3b96c3e0",
+      name: "الوحدة الاول",
+      complexId: "fbe64a95-540b-4236-ceb4-08dd3b96be48",
+      complexName: "المجمع الاول",
+    },
+    {
+      id: "42ba3487-6eea-4132-fd22-08dd3b96c3e0",
+      name: "الوحدة الاول",
+      complexId: "9ede6b73-1e70-412a-ceb9-08dd3b96be48",
+      complexName: "المجمع الاول",
+    },
+    {
+      id: "d6c7d0e5-e3b3-4cb9-fd27-08dd3b96c3e0",
+      name: "الوحدة الاول",
+      complexId: "a7ed7b4d-e145-4695-ceba-08dd3b96be48",
+      complexName: "المجمع الثاني",
+    },
+    {
+      id: "1b3dc54d-6459-46ba-fd2c-08dd3b96c3e0",
+      name: "الوحدة الاول",
+      complexId: "0bff9b79-dfa3-495f-cebe-08dd3b96be48",
+      complexName: "المجمع السادس",
+    },
+    {
+      id: "9f1db184-87e2-456b-49b7-08dd298982f8",
+      name: "الوحدة الاول",
+      complexId: "e344325f-9261-4b7e-da77-08dd29897e0f",
+      complexName: "المجمع الاول",
+    },
+    {
+      id: "724c3453-bd5d-480e-68e9-08dd1dbaf868",
+      name: "الوحدة الاول",
+      complexId: "e9e741c2-596e-402b-f72c-08dd1d918f30",
+      complexName: "المجمع السابع عشر ",
+    },
+    {
+      id: "3a432224-0069-4643-5288-08dd28bb0df2",
+      name: "الوحدة الاول",
+      complexId: "d2b8249f-f5ad-4fe2-d3a3-08dd28bafe4d",
+      complexName: "المجمع الاول",
+    },
+    {
+      id: "552ff6f8-622f-4d77-fd2f-08dd3b96c3e0",
+      name: "الوحدة الاول",
+      complexId: "a51fc952-e735-4172-cebf-08dd3b96be48",
+      complexName: "المجمع السابع",
+    },
+  ],
+  recordsTotal: 150,
+  recordsFiltered: 150,
+};

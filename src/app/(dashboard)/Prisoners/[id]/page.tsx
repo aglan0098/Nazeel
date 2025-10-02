@@ -4,7 +4,7 @@ import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
 // data
 import { prisoners } from "@/data/mockPrisoners";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Table from "@/components/general/Table";
+import Table from "@/components/general/table/Table";
 
 import {
   Accordion,
@@ -151,9 +151,7 @@ function prisoner({ params }) {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="1">
-              <Table />
-            </TabsContent>
+            <TabsContent value="1">{/* <Table /> */}</TabsContent>
             <TabsContent value="2" className="p-5">
               المحاضر
             </TabsContent>
@@ -220,9 +218,7 @@ function prisoner({ params }) {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="1">
-              <Table />
-            </TabsContent>
+            <TabsContent value="1">{/* <Table /> */}</TabsContent>
 
             <TabsContent value="3" className="p-5">
               أوامر النقل

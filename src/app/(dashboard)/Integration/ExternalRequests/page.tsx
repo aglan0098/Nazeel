@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import Pagination from "@/components/general/pagination";
+import Pagination from "@/components/general/table/Pagination";
 import { externalRequests } from "@/data/test_data/externalRequests";
 
 // icons

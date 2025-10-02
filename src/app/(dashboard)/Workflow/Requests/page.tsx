@@ -1,172 +1,127 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Pagination from "@/components/general/pagination";
+import React, { useState } from "react";
 
-// icons
-import { CiSearch } from "react-icons/ci";
-import { FaArrowUpWideShort } from "react-icons/fa6";
-import { HiMiniEye } from "react-icons/hi2";
+import GenericTable from "@/components/general/table/GenericTable";
+import { Dialog, DialogPanel } from "@headlessui/react";
 
-// test data
-import { requests } from "@/data/test_data/requests";
+import { useQuery } from "@tanstack/react-query";
+
+import { mockRequestsResponse } from "./mockRequests";
+import { mockData } from "./mockData";
 
 function Requests() {
-  // Navigate
-  const router = useRouter();
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const goToPage = (id) => {
-    router.push(`/Workflow/Requests/${id}`);
-  };
+  const columns = [
+    { key: "requestNumber", label: "رقم الطلب" },
+    { key: "prisonerName", label: "اسم السجين" },
+    { key: "requestDate", label: "تاريخ الطلب" },
+    { key: "requestStatus", label: "حالة الطلب" },
+    { key: "nationalId", label: "الهوية" },
+    {
+      key: "actions",
+      label: "إجراءات",
+      render: (r: any) => (
+        <div className="flex justify-center items-center gap-3">
+          <button className="text-main bg-second rounded-lg text-lg px-5 py-2 cursor-pointer hover:text-white hover:bg-main transition">
+            طباعة
+          </button>
+          <button
+            className="text-main bg-second rounded-lg text-lg px-5 py-2 cursor-pointer hover:text-white hover:bg-main transition"
+            onClick={() => setSelectedId(r.id)} // pass id to dialog
+          >
+            سير الاجراء
+          </button>
+        </div>
+      ),
+    },
+  ];
 
-  // Pagination logic
-  // const [requests, setRequests] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["request-details", selectedId],
+    queryFn: async () => {
+      //for mock data
+      await new Promise((r) => setTimeout(r, 500));
+      return mockData;
 
-  const ITEMS_PER_PAGE = 10;
-
-  const fetchTasks = async (page: number) => {
-    try {
-      const res = await fetch(
-        `/api/requests?page=${page}&limit=${ITEMS_PER_PAGE}`
-      );
-
-      const { data, total } = await res.json();
-      // setRequests(data);
-      setTotalPages(Math.ceil(total / ITEMS_PER_PAGE));
-    } catch (error) {
-      console.error("Failed to fetch tasks", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTasks(currentPage);
-  }, [currentPage]);
+      // const res = await api.get(`/requests/${selectedId}`);
+      // return res.data;
+    },
+    enabled: !!selectedId, // run only if id exists
+  });
 
   return (
     <>
-      {/* Table Container */}
-      <div className="border border-gray-100 rounded-lg p-5 mt-10 shadow-md">
-        {/* search */}
-        <div className="bg-gray-100 border border-gray-200 rounded-2xl p-2 w-full sm:w-1/4 flex items-center gap-1 justify-between mb-5">
-          <CiSearch className="text-2xl" />
+      <GenericTable
+        mockData={mockRequestsResponse}
+        columns={columns}
+        queryKey="requests"
+      />
 
-          <input
-            type="text"
-            placeholder="بحث"
-            className="h-6 w-full px-3 focus:outline-0"
-          />
-        </div>
+      {/* أو باك اند */}
 
-        {/* table */}
-        <div className="overflow-x-auto rounded-xl">
-          <table className="min-w-full divide-y-2 divide-gray-200 border border-gray-200 text-sm">
-            <thead className="bg-gray-100">
-              <tr className="*:text-gray-700 divide-x divide-gray-200">
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>رقم الطلب</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
+      {/* <GenericTable
+        columns={columns}
+        queryKey="requests"
+        queryFn={(params) => myAxiosFetchFn("/requests", params)}
+      /> */}
 
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>نوع الطلب</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>اسم السجين</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>تاريخ الإرسال</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>المنطقة</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>اسم السجن</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>مرحلة الطلب</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3">
-                    <p>حالة الطلب</p>
-                    <FaArrowUpWideShort />
-                  </div>
-                </th>
-
-                <th className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center justify-center gap-3"></div>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody className="divide-y divide-gray-200">
-              {requests.map((item) => (
-                <tr
-                  key={item.id}
-                  className="*:text-gray-900 *:first:font-medium divide-x divide-gray-200 text-center"
-                >
-                  <td className="px-3 py-2 whitespace-nowrap">{item.id}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">{item.type}</td>
-
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    {item.prisoner_name}
-                  </td>
-                  <td className="px-3 py-2 whitespace-nowrap">{item.date}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">{item.area}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    {item.prison_name}
-                  </td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    {item.request_stage}
-                  </td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    {item.request_status}
-                  </td>
-                  <td className="px-3 py-2 whitespace-nowrap text-2xl">
-                    <button
-                      className="cursor-pointer text-gray-400"
-                      onClick={() => goToPage(item.id)}
-                    >
-                      <HiMiniEye />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* pagination */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={(page) => setCurrentPage(page)}
+      {/* ========== Dialog ============ */}
+      <Dialog
+        open={!!selectedId}
+        onClose={() => setSelectedId(null)}
+        className="relative z-50"
+      >
+        {/* overlay */}
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+          aria-hidden="true"
         />
-      </div>
+
+        {/* content */}
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <DialogPanel className="bg-white rounded-xl shadow-xl w-auto max-h-[90vh] overflow-hidden p-7 min-w-[500px]">
+            {isLoading ? (
+              <p className="text-center text-lg text-main">جار التحميل...</p>
+            ) : error ? (
+              <p className="text-center text-red-500">فشل تحميل البيانات</p>
+            ) : data ? (
+              <>
+                <p className="text-center text-xl text-white mb-7 bg-main py-2 rounded-xl">
+                  سير الإجراء
+                </p>
+                <div className="space-y-6 max-h-[60vh] overflow-y-auto">
+                  {data.object.map((step, idx) => (
+                    <div
+                      key={idx}
+                      className="border rounded-lg p-4 shadow-sm bg-gray-50"
+                    >
+                      <h3 className="font-bold text-main mb-3">
+                        {step.stepName}
+                      </h3>
+                      <ul className="list-disc list-inside space-y-1 text-gray-700">
+                        {step.users.map((user, i) => (
+                          <li key={i}>{user}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : null}
+
+            <div className="flex items-center gap-7 mt-8 justify-center">
+              <button
+                className="bg-gray-200 px-20 py-2 rounded-xl cursor-pointer"
+                onClick={() => setSelectedId(null)}
+              >
+                إلغاء
+              </button>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
     </>
   );
 }

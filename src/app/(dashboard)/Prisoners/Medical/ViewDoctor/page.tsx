@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 // components
 import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
-import Pagination from "@/components/general/pagination";
+import Pagination from "@/components/general/table/Pagination";
 // data
 import { prisoners } from "@/data/mockPrisoners";
 // dialogs

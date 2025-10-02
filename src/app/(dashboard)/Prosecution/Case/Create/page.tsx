@@ -3,10 +3,13 @@
 import { useEffect, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePrisonerStore } from "@/store/usePrisonerStore";
-import PrisonerSearchWrapper from "@/app/Prosecution/Case/Create/_components/PrisonerSearchWrapper";
-import CasesTableSkeleton from "@/app/Prosecution/Case/Create/_components/CasesTableSkeleton";
-import PersonalInfoSkeleton from "@/app/Prosecution/Case/Create/_components/PersonalInfoSkeleton";
+// import PrisonerSearchWrapper from "@/app/Prosecution/Case/Create/_components/PrisonerSearchWrapper";
+// import CasesTableSkeleton from "@/app/Prosecution/Case/Create/_components/CasesTableSkeleton";
+// import PersonalInfoSkeleton from "@/app/Prosecution/Case/Create/_components/PersonalInfoSkeleton";
 import { Search, OctagonX } from "lucide-react";
+import PrisonerSearchWrapper from "./_components/PrisonerSearchWrapper";
+import PersonalInfoSkeleton from "./_components/PersonalInfoSkeleton";
+import CasesTableSkeleton from "./_components/CasesTableSkeleton";
 
 interface CaseData {
   [key: string]: any;
@@ -23,8 +26,10 @@ export interface Prisoner {
   cases: CaseData[];
 }
 
-const PersonalInfoCard = lazy(() => import("@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard"));
-const CasesTable = lazy(() => import("@/app/Prosecution/Case/Create/_components/CasesTable"));
+const PersonalInfoCard = lazy(
+  () => import("./_components/CreateTransaction/PersonalInfoCard")
+);
+const CasesTable = lazy(() => import("./_components/CasesTable"));
 
 const Page: React.FC = () => {
   const { selectedPrisoner, notFound, resetNotFound } = usePrisonerStore();
@@ -48,10 +53,10 @@ const Page: React.FC = () => {
             </Suspense>
 
             <Suspense fallback={<CasesTableSkeleton />}>
-<CasesTable
-  cases={selectedPrisoner.cases}
-  prisonerIdNumber={selectedPrisoner.idNumber}
-/>
+              <CasesTable
+                cases={selectedPrisoner.cases}
+                prisonerIdNumber={selectedPrisoner.idNumber}
+              />
             </Suspense>
           </div>
         ) : notFound ? (
@@ -68,7 +73,8 @@ const Page: React.FC = () => {
             </div>
             <h2 className="text-lg font-semibold mb-1">السجين غير موجود</h2>
             <p className="text-sm text-red-700 max-w-md">
-              لم يتم العثور على سجين برقم الهوية المدخل<br />
+              لم يتم العثور على سجين برقم الهوية المدخل
+              <br />
               الرجاء التأكد من صحة الرقم أو اختيار سجين من القائمة
             </p>
           </motion.div>
@@ -84,7 +90,9 @@ const Page: React.FC = () => {
             <div className="bg-amber-50 text-amber-800 p-4 rounded-full mb-4">
               <Search className="w-8 h-8" />
             </div>
-            <h2 className="text-lg font-semibold mb-1">لا يوجد بيانات لعرضها</h2>
+            <h2 className="text-lg font-semibold mb-1">
+              لا يوجد بيانات لعرضها
+            </h2>
             <p className="text-sm text-gray-500 max-w-md">
               الرجاء إدخال رقم الهوية في حقل البحث أو اختيار سجين من القائمة
               لعرض البيانات الشخصية والقضايا المرتبطة به
@@ -94,5 +102,5 @@ const Page: React.FC = () => {
       </AnimatePresence>
     </PrisonerSearchWrapper>
   );
-}
+};
 export default Page;

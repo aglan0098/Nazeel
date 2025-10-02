@@ -45,7 +45,7 @@ function FastCreate() {
       </div> */}
 
       {/* Prison Info */}
-      <Prisoner_Info_Card
+      {/* <Prisoner_Info_Card
         caseName={"اسم القضية"}
         stopDate={"01/01/1997"}
         wingRoom={"ج - 102"}
@@ -56,7 +56,7 @@ function FastCreate() {
         birthDate={"1 / 1 / 2001"}
         tamem={false}
         gender={"ذكر"}
-      />
+      /> */}
 
       {/* رقم السجين */}
       <div className="shadow-md rounded-2xl my-5">

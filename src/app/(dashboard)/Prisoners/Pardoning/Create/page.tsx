@@ -5,7 +5,7 @@ import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
 // form data
 import SmartForm from "@/components/general/formComponent";
 import formConfig from "./formConfig";
-import Pagination from "@/components/general/pagination";
+import Pagination from "@/components/general/table/Pagination";
 // icons
 import { CiSearch } from "react-icons/ci";
 import { FaArrowUpWideShort } from "react-icons/fa6";

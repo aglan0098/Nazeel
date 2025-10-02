@@ -48,8 +48,8 @@ const cards = [
 export default function Home() {
   return (
     <>
-      <div className="md:grid grid-cols-2">
-        <div className="mb-20 border-2 border-gray-100 rounded-xl p-3 md:p-6 my-4">
+      <div className="md:grid grid-cols-2 gap-5 my-5">
+        <div className="mb-20 border-2 border-gray-100 rounded-xl p-3 md:p-6">
           {/* Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {cards.map((card) => (
@@ -57,17 +57,17 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        <div className="mb-20 border-2 border-gray-100 rounded-xl p-3 md:p-6 my-4">
-          {/* Cards */}
-          <h2>مهامي</h2>
+        <div className="mb-20">
+          <ChartBarLabel />
         </div>
       </div>
 
-      <div className="md:grid grid-cols-[2fr_1fr]">
-        <div>
-          <ChartBarLabel />
+      <div className="md:grid grid-cols-[2fr_1fr] gap-5">
+        <div className="mb-20 border-2 border-gray-100 rounded-xl p-3 md:p-6">
+          {/* Cards */}
+          <h2 className="text-xl font-bold">مهامي</h2>
         </div>
+
         <div>
           <ChartPieDonutText />
         </div>

@@ -1,0 +1,91 @@
+export const mockData = {
+  draw: 2,
+  data: [
+    {
+      id: "55efa40b-7480-4304-8cb4-ef58f8324873",
+      name: "المشاعر المقدسة بمكة المكرمة ",
+      code: "3",
+      rowVersion: null,
+    },
+    {
+      id: "a86a523b-339f-44f6-adf1-6f9b921b97ad",
+      name: "المنطقة الشرقية",
+      code: "4",
+      rowVersion: null,
+    },
+    {
+      id: "317eb0ce-a9fa-4521-8e70-47b3ca3197c0",
+      name: "منطقة الباحة",
+      code: "9",
+      rowVersion: null,
+    },
+    {
+      id: "9586c1d7-6db1-469f-a4be-680c18ef4665",
+      name: "منطقة الجوف",
+      code: "8",
+      rowVersion: null,
+    },
+    {
+      id: "2f2ac103-b7b2-409e-b288-a3a986f61cc1",
+      name: "منطقة الحدود الشمالية",
+      code: "15",
+      rowVersion: null,
+    },
+    {
+      id: "88fb7309-84bc-4ca5-a27f-da1637809334",
+      name: "منطقة الرياض",
+      code: "1",
+      rowVersion: null,
+    },
+    {
+      id: "5d8bc2f0-c835-441b-be9a-479962c8d521",
+      name: "منطقة القصيم",
+      code: "5",
+      rowVersion: null,
+    },
+    {
+      id: "5a534ebe-ff2c-4737-b55b-35f877b825c6",
+      name: "منطقة المدينة المنورة",
+      code: "10",
+      rowVersion: null,
+    },
+    {
+      id: "47ac45ac-a1fb-4731-8856-f05394d02a79",
+      name: "منطقة تبوك",
+      code: "7",
+      rowVersion: null,
+    },
+    {
+      id: "ce36c670-e0f3-44fe-b819-bcf4f0ef8199",
+      name: "منطقة جازان",
+      code: "11",
+      rowVersion: null,
+    },
+    {
+      id: "6c8cf86a-e1ab-4326-a23e-a0a36ffa2778",
+      name: "منطقة حائل",
+      code: "14",
+      rowVersion: null,
+    },
+    {
+      id: "521deacf-9002-41dc-a3f6-cef30c4893ee",
+      name: "منطقة عسير",
+      code: "6",
+      rowVersion: null,
+    },
+    {
+      id: "e5d72783-a825-48fe-9459-79948c8b7b31",
+      name: "منطقة مكة المكرمة",
+      code: "3",
+      rowVersion: null,
+    },
+    {
+      id: "3e8bf82c-8d8e-4141-a97f-e7bd3a731026",
+      name: "منطقة نجران",
+      code: "12",
+      rowVersion: null,
+    },
+  ],
+  recordsTotal: 14,
+  recordsFiltered: 14,
+};
