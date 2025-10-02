@@ -63,12 +63,10 @@ function Task() {
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <DialogPanel className="bg-white rounded-xl shadow-xl w-auto max-h-[90vh] overflow-hidden p-8">
             <BsExclamationCircle className="text-main text-7xl m-auto mb-5" />
-            <p className="text-center text-2xl">
+            <p className="text-center text-2xl my-7">
               هل أنت متأكد من أنك تريد الموافقة علي هذا الطلب؟
             </p>
-            <p className="text-center text-xl text-gray-400 my-7">
-              في حالة الضغط علي "موافق" سيتم الموافقة علي هذا الطلب وتنفيذه
-            </p>
+
             <div className="flex items-center gap-7 m-auto w-[50%] justify-center">
               <button className="bg-main text-white px-20 py-2 rounded-xl cursor-pointer">
                 موافق
