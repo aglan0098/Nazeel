@@ -8,7 +8,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { prisoners } from "@/data/mockPrisoners";
 
-function task() {
+function Task() {
   const [approved, setApproved] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [edited, setEdited] = useState(false);
@@ -168,4 +168,4 @@ function task() {
   );
 }
 
-export default task;
+export default Task;

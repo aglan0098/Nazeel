@@ -3,7 +3,7 @@ import Prisoner_Info_Card from "@/components/general/Prisoner_Info_Card";
 import Request_Info_Card from "@/components/general/Request_Info_Card";
 import { prisoners } from "@/data/mockPrisoners";
 
-function page() {
+function DoneRequests() {
   return (
     <>
       <Request_Info_Card
@@ -64,4 +64,4 @@ function page() {
   );
 }
 
-export default page;
+export default DoneRequests;

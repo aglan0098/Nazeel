@@ -9,7 +9,7 @@ import { IoCaretDownSharp } from "react-icons/io5";
 import { FaArrowUpWideShort } from "react-icons/fa6";
 import { HiMiniEye } from "react-icons/hi2";
 
-function page() {
+function RequestID() {
   // State for all form fields
   const [formData, setFormData] = useState({
     releaseOrderNumber: "",
@@ -410,4 +410,4 @@ function page() {
   );
 }
 
-export default page;
+export default RequestID;

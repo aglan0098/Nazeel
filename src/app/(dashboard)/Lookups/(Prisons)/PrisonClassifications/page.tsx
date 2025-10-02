@@ -129,7 +129,7 @@ function ActionsMenu({
 }
 
 // ---------- Page ----------
-export default function prisonClassifications() {
+export default function PrisonClassifications() {
   const [openMenuId, setOpenMenuId] = useState<string | number | null>(null);
   const [formDialog, setFormDialog] = useState<null | {
     type: "create" | "edit";
