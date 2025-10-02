@@ -3,14 +3,17 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import PersonalInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard";
-import CaseInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/CaseInfoCard";
-import JudgmentInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentInfoCard";
-import PenaltySection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PenaltySection";
-import JudgmentApprovalFields from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentApprovalFields";
-import PunishmentsSection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PunishmentsSection";
+// import PersonalInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PersonalInfoCard";
+// import CaseInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/CaseInfoCard";
+// import JudgmentInfoCard from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentInfoCard";
+// import PenaltySection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PenaltySection";
+// import JudgmentApprovalFields from "@/app/Prosecution/Case/Create/_components/CreateTransaction/JudgmentApprovalFields";
+// import PunishmentsSection from "@/app/Prosecution/Case/Create/_components/CreateTransaction/PunishmentsSection";
 import type { Prisoner } from "@/types/Prisoner";
 import type { Case } from "@/types/Case";
+import PersonalInfoCard from "./CreateTransaction/PersonalInfoCard";
+import CaseInfoCard from "./CreateTransaction/CaseInfoCard";
+import JudgmentInfoCard from "./CreateTransaction/JudgmentInfoCard";
 
 interface CreateCaseProps {
   prisoner: Prisoner;
@@ -61,7 +64,7 @@ const CreateCase: React.FC<CreateCaseProps> = ({
       />
 
       {/* ✅ العقوبات - فقط في الوضع القابل للتعديل */}
-      <div className="my-8">
+      {/* <div className="my-8">
         {!isReadOnly ? (
           <PenaltySection />
         ) : (
@@ -70,17 +73,17 @@ const CreateCase: React.FC<CreateCaseProps> = ({
             isReadOnly={true}
           />
         )}
-      </div>
+      </div> */}
 
       {/* ✅ حقول التصديق - فقط في التعديل */}
-      {isEdit && (
+      {/* {isEdit && (
         <JudgmentApprovalFields
           penalty={{ extras: {} }}
           onChange={(field, value) => {
             console.log("Changed:", field, value);
           }}
         />
-      )}
+      )} */}
 
       {/* ✅ الأزرار */}
       <div className="flex justify-between mt-6" dir="ltr">

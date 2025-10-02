@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import CreateCase from "@/app/Prosecution/Case/Create/_components/CreateCase";
+// import CreateCase from "@/app/Prosecution/Case/Create/_components/CreateCase";
 import { usePrisonerStore } from "@/store/usePrisonerStore";
+import CreateCase from "../_components/CreateCase";
 
 export default function DynamicCasePage() {
   const { idNumber } = useParams();
