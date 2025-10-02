@@ -40,13 +40,13 @@ export default function CreateReleases() {
                 <PersonalInfoCard {...selectedPrisoner} />
               </Suspense>
 
-              <Suspense fallback={<CasesTableSkeleton />}>
+              {/* <Suspense fallback={<CasesTableSkeleton />}>
                 <CasesTable
                   cases={selectedPrisoner.cases}
                   prisonerIdNumber={selectedPrisoner.idNumber}
                 />
                 <ReleaseFormSection/>
-              </Suspense>
+              </Suspense> */}
             </div>
           ) : notFound ? (
             <motion.div
