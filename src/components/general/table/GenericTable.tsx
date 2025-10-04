@@ -59,12 +59,12 @@ export default function GenericTable({
 
     const filtered = q
       ? all.filter((item: any) =>
-          Object.values(item).some((val) =>
-            String(val || "")
-              .toLowerCase()
-              .includes(q)
-          )
+        Object.values(item).some((val) =>
+          String(val || "")
+            .toLowerCase()
+            .includes(q)
         )
+      )
       : all;
 
     const recordsFiltered = filtered.length;
@@ -88,10 +88,19 @@ export default function GenericTable({
   }
 
   // هنختار الـ fetcher: يا إما جايلنا من برا (queryFn) أو هنستخدم الموك
-  const fetcher = queryFn ?? defaultQueryFn;
+  const fetcher: (params: {
+    page: number;
+    pageSize: number;
+    search: string;
+  }) => Promise<any> = queryFn ?? defaultQueryFn;
 
   // React Query: هيعمل كاش بناءً على key + params
-  const { data, isLoading, isFetching, error } = useQuery({
+  const { data, isLoading, isFetching, error } = useQuery<{
+    draw: number;
+    data: any[];
+    recordsTotal: number;
+    recordsFiltered: number;
+  }>({
     queryKey: [queryKey, { page, pageSize, search }],
     queryFn: () => fetcher({ page, pageSize, search }),
     keepPreviousData: true,
