@@ -90,7 +90,7 @@ export default function GenericTable({
   const { data, isLoading, isFetching, error } = useQuery({
     queryKey: [queryKey, { page, pageSize, search }],
     queryFn: () => fetcher({ page, pageSize, search }),
-    keepPreviousData: true,
+    // keepPreviousData: true,
     staleTime: 1000 * 60 * 2, // دقيقتين
   });
 

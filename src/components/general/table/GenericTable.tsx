@@ -103,6 +103,7 @@ export default function GenericTable({
   }>({
     queryKey: [queryKey, { page, pageSize, search }],
     queryFn: () => fetcher({ page, pageSize, search }),
+    // keepPreviousData: true,
     staleTime: 1000 * 60 * 2, // دقيقتين
   });
 
